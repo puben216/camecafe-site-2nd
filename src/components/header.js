@@ -1,42 +1,26 @@
-import * as React from "react"
-import PropTypes from "prop-types"
+import React from "react"
 import { Link } from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
+export default () => (
+  <header className="header">
+    <div className="container">
+      <div className="site">
+        <Link to={`/`}>
+          <FontAwesomeIcon icon={faCamera} />camecafe
         </Link>
-      </h1>
+      </div>
+      <nav className="nav">
+        <ul>
+          <li>
+            <Link to={`/`}>TOP</Link>
+          </li>
+          <li>
+            <Link to={`/about/`}>ABOUT</Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
