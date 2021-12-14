@@ -44,19 +44,7 @@ export default () => {
         </div>
         <ul className="sns">
           <li>
-            <a href="https://twitter.com/">
-              <FontAwesomeIcon icon={faTwitter} />
-              <span className="sr-only">Twitter</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://facebook.com/">
-              <FontAwesomeIcon icon={faFacebookSquare} />
-              <span className="sr-only">Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="http://instagram.com/">
+            <a href="https://www.instagram.com/camecafe_circle__.2nd/">
               <FontAwesomeIcon icon={faInstagram} />
               <span className="sr-only">Instagram</span>
             </a>
