@@ -33,7 +33,7 @@ export default ({data}) => (
         </figure>
         <div className="catch">
           <h1>There is no love sincerer than<br /> the love of food.</h1>
-          <p>食物を愛するよりも誠実な愛はない ― バーナード・ショー</p>
+          <p>東京を中心に活動する初心者向けカメラサークル</p>
         </div>
         <div className="wave">
           <img src="images/wave.svg" alt="" />
@@ -73,7 +73,7 @@ export default ({data}) => (
       <section className="photo">
         <h2 className="sr-only">Photo</h2>
         <figure>
-          <img src="images/berry.jpg" alt="赤く熟したベリー" />
+          <img src="images/berry.jpg" alt="赤く熟したベリー" className="sr-only-img"/>
         </figure>
       </section>
     </Layout>

@@ -32,8 +32,17 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `camecafe（カメカフェ）`,
+        short_name: `camecafe`,
+        short_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `standalone`,
+        icon: `src/images/cametop.png`
+      }
+    },
+    `gatsby-plugin-offline`,
   ],
 }
