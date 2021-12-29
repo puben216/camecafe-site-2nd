@@ -15,10 +15,6 @@ config.autoAddCss = false
 export default ({ children }) => (
   <div>
     
-    <OutboundLink href="https://www.gatsbyjs.com/plugins/gatsby-plugin-google-analytics/">
-      Visit the Google Analytics plugin page!
-    </OutboundLink>
-
     <Header />
 
     {children}
