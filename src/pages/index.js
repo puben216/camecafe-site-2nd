@@ -32,7 +32,7 @@ export default ({data}) => (
         <figure>
         </figure>
         <div className="catch">
-          <h1>There is no love sincerer than<br /> the love of food.</h1>
+          <h1>カメカフェ</h1>
           <p>東京を中心に活動する初心者向けカメラサークル</p>
         </div>
         <div className="wave">
