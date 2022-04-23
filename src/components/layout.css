@@ -124,6 +124,9 @@ svg {
 	text-align: center;
 	color: #fff;
 	text-shadow: 0 0 20px rgba(0,0,0,0.5);
+	background-image: url('../images/0B50BDDA-1CBA-4883-BE0E-DF01036339BF.jpg');
+	background-size: cover;
+	background-position: center;
 }
 
 .hero .catch h1 {

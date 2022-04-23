@@ -35,45 +35,54 @@ export default ({data}) => (
           <h1>カメカフェ</h1>
           <p>東京を中心に活動する初心者向けカメラサークル</p>
         </div>
-        <div className="wave">
-          <img src="images/wave.svg" alt="" />
-        </div>
       </section>
       <section className="food">
         <div className="container">
-          <h2 className="bar">Food <span>Essence</span></h2>
+          <h2 className="bar">お知らせ</h2>
           <div className="details">
             <div className="detail">
-              <figure>
-                <img src="images/fruit.jpg" alt="" />
-              </figure>
-              <h3>フルーツ</h3>
-              <p>FRUIT</p>
-              <p>甘くてすっぱくておいしい果実たち。<br />旬のフルーツを満喫します。</p>
-            </div>
-            <div className="detail">
-              <figure>
-                <img src="images/grain.jpg" alt="" />
-              </figure>
-              <h3>穀物</h3>
-              <p>GRAIN</p>
-              <p>食事の基本となる穀物。<br />毎日の活動のエネルギー源になります。</p>
-            </div>
-            <div className="detail">
-              <figure>
-                <img src="images/beverage.jpg" alt="" />
-              </figure>
-              <h3>飲み物</h3>
-              <p>BEVERAGE</p>
-              <p>リラックスするのに欠かせない飲み物。<br />お気に入りの一杯はありますか？</p>
+
             </div>
           </div>
         </div>
       </section>
+
+      <section className="food">
+        <div className="container">
+          <h2 className="bar">新着 <span></span></h2>
+          <div className="details">
+            <div className="detail">
+              <figure>
+                <img src="images/IMGP4909.JPG" alt="" />
+              </figure>
+              <h3>紅葉（本土寺）撮影会</h3>
+              <p>Hondoji Temple</p>
+              <p>紅葉を撮りに行きました。</p>
+            </div>
+            <div className="detail">
+              <figure>
+                <img src="images/IMGP4909.JPG" alt="" />
+              </figure>
+              <h3>紅葉（本土寺）撮影会</h3>
+              <p>Hondoji Temple</p>
+              <p>紅葉を撮りに行きました。</p>
+            </div>
+            <div className="detail">
+              <figure>
+                <img src="images/IMGP4909.JPG" alt="" />
+              </figure>
+              <h3>紅葉（本土寺）撮影会</h3>
+              <p>Hondoji Temple</p>
+              <p>紅葉を撮りに行きました。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="photo">
         <h2 className="sr-only">Photo</h2>
         <figure>
-          <img src="images/berry.jpg" alt="赤く熟したベリー" className="sr-only-img"/>
+          <img src="images/spring-2174750__340.png" alt="赤く熟したベリー" className="sr-only-img"/>
         </figure>
       </section>
     </Layout>
