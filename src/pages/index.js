@@ -78,13 +78,6 @@ export default ({data}) => (
           </div>
         </div>
       </section>
-
-      <section className="photo">
-        <h2 className="sr-only">Photo</h2>
-        <figure>
-          <img src="images/spring-2174750__340.png" alt="赤く熟したベリー" className="sr-only-img"/>
-        </figure>
-      </section>
     </Layout>
   </div>
 );
