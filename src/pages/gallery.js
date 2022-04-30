@@ -2,6 +2,7 @@ import React from "react"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
+import Seo from "../components/seo" 
 import { graphql } from "gatsby"
   
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -12,17 +13,31 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { StaticImage } from "gatsby-plugin-image"
 
 
+
+
 export default ({ data, location }) => {
   const GatsbyImages = data.about.edges.map(({node}) => {
     return (
-      <GatsbyImage image={getImage(node.childImageSharp)} alt="" />
+      <div>
+        <GatsbyImage image={getImage(node.childImageSharp)} alt="" />
+      </div>
     )
   })
+  const hello = function(params) {
+    console.log('heeeloo');
+  }
 
   return (
-    <StackGrid>
-      {GatsbyImages}
-    </StackGrid>
+    <Layout>
+      <Seo title="Page two" />
+      <div className="gallery-height">
+        <StackGrid
+          columnWidth={200}
+          onLayout={hello}>
+          {GatsbyImages}
+        </StackGrid>
+      </div>
+    </Layout>
   )
 }
 
