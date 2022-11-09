@@ -1,4 +1,8 @@
-const path = require('path');
+const path = require("path")
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -8,7 +12,7 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
-    'gatsby-plugin-netlify',
+    "gatsby-plugin-netlify",
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -52,14 +56,14 @@ module.exports = {
         short_url: `/`,
         background_color: `#ffffff`,
         theme_color: `standalone`,
-        icon: `src/images/cametop.png`
-      }
+        icon: `src/images/cametop.png`,
+      },
     },
     {
       resolve: "gatsby-source-microcms",
       options: {
-        apiKey: '5720dd2afe5d4b9d9fe19f35b06142a8bcf2',
-        serviceId: 'camecafe',
+        apiKey: process.env.GATSBY_MICROCMS_API_KEY,
+        serviceId: "camecafe",
         apis: [
           {
             endpoint: "blog",
