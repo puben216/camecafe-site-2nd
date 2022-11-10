@@ -27,7 +27,13 @@ export default ({ data, location }) => {
   })
 
   const getMasonryColumn = () => {
-    const { innerWidth: width } = window
+    let documentWindow = null
+    if (typeof window !== `undefined`) {
+      documentWindow = window
+    } else {
+      return 4
+    }
+    const { innerWidth: width } = documentWindow
     if (width < 700) {
       return 3
     } else if (width < 960) {
