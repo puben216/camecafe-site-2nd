@@ -14,12 +14,12 @@ import { Masonry } from "@mui/lab"
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material"
 
 export default ({ data, location }) => {
-  const GatsbyImages = data.about.edges.map(({ node }) => {
+  const GatsbyImages = data.photos.nodes.map(node => {
     return (
       <ImageListItem key={node.id}>
         <img
-          src={`${node.publicURL}?w=248&fit=crop&auto=format`}
-          srcSet={`${node.publicURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+          src={`${node.photo.url}?w=248&fit=crop&auto=format`}
+          srcSet={`${node.photo.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
           loading="lazy"
         />
       </ImageListItem>
@@ -57,21 +57,24 @@ export default ({ data, location }) => {
       <ImageList variant="masonry" cols={masonryColumn} gap={8}>
         {GatsbyImages}
       </ImageList>
+      <br />
+      <br />
+      <br />
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
-    about: allFile {
-      edges {
-        node {
-          id
-          absolutePath
-          publicURL
-          childImageSharp {
-            gatsbyImageData
-          }
+    photos: allMicrocmsPhotos(sort: { fields: shoot_date }) {
+      nodes {
+        id
+        shoot_date
+        title
+        photo {
+          url
+          height
+          width
         }
       }
     }

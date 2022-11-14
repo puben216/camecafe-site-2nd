@@ -68,6 +68,12 @@ module.exports = {
           {
             endpoint: "blog",
           },
+          {
+            endpoint: "photos",
+          },
+          {
+            endpoint: "register_photo",
+          },
         ],
       },
     },
