@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
+import Modal from "../components/gallery/modal"
 import Seo from "../components/seo"
 import { graphql } from "gatsby"
 
@@ -14,14 +15,23 @@ import { Masonry } from "@mui/lab"
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material"
 
 export default ({ data, location }) => {
+  const [show, setShow] = useState(false)
+  const [modalPhoto, setModalPhoto] = useState(false)
+  const showModal = node => {
+    console.log(node, "bbbbbbbbb")
+    setShow(true)
+    setModalPhoto(node)
+  }
   const GatsbyImages = data.photos.nodes.map(node => {
     return (
       <ImageListItem key={node.id}>
-        <img
-          src={`${node.photo.url}?w=248&fit=crop&auto=format`}
-          srcSet={`${node.photo.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-          loading="lazy"
-        />
+        <a href="#" onClick={() => showModal(node)}>
+          <img
+            src={`${node.photo.url}?w=248&fit=crop&auto=format`}
+            srcSet={`${node.photo.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            loading="lazy"
+          />
+        </a>
       </ImageListItem>
     )
   })
@@ -57,6 +67,7 @@ export default ({ data, location }) => {
       <ImageList variant="masonry" cols={masonryColumn} gap={8}>
         {GatsbyImages}
       </ImageList>
+      <Modal show={show} setShow={setShow} node={modalPhoto} />
       <br />
       <br />
       <br />
