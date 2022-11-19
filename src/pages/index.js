@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
@@ -41,10 +41,12 @@ export default ({ data }) => {
     console.log("(image)")
     return (
       <div className="detail" key={blog.id}>
-        <h3>{blog.title}</h3>
-        <figure>{image}</figure>
-        <p>{blog.subtitle}</p>
-        <p>{parse(blog.content.substring(0, 140))}</p>
+        <Link to={`/blog/${blog.id}`}>
+          <h3>{blog.title}</h3>
+          <figure>{image}</figure>
+          <p>{blog.subtitle}</p>
+          <p>{parse(blog.content.substring(0, 140))}</p>
+        </Link>
       </div>
     )
   })
