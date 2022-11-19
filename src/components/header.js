@@ -1,14 +1,15 @@
 import React from "react"
 import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faCamera } from "@fortawesome/free-solid-svg-icons"
 
 export default () => (
   <header className="header">
     <div className="container">
       <div className="site">
         <Link to={`/`}>
-          <FontAwesomeIcon icon={faCamera} />camecafe
+          <FontAwesomeIcon icon={faCamera} />
+          camecafe
         </Link>
       </div>
       <nav className="nav">
@@ -24,6 +25,9 @@ export default () => (
           </li>
           <li>
             <Link to={`/faq/`}>FAQ</Link>
+          </li>
+          <li>
+            <Link to={`/login/`}>LOGIN</Link>
           </li>
         </ul>
       </nav>
