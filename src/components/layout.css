@@ -620,3 +620,11 @@ img {
 .pagenation .next [class*="fa-"] {
   margin-left: 10px;
 }
+
+.footer a {
+  color: white;
+}
+
+.header a {
+  color: black;
+}

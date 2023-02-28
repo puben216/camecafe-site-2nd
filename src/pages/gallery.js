@@ -20,9 +20,10 @@ export default ({ data, location }) => {
   }
   const GatsbyImages = data.photos.nodes.map(node => {
     return (
-      <ImageListItem key={node.id}>
+      <ImageListItem className="photo-gallery" key={node.id}>
         <a href="#" onClick={() => showModal(node)}>
           <img
+            className="photo-gallery-image"
             src={`${node.photo.url}?w=248&fit=crop&auto=format`}
             srcSet={`${node.photo.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
             loading="lazy"

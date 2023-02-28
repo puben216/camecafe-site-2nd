@@ -9,16 +9,14 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 
 import { OutboundLink } from "gatsby-plugin-google-gtag"
-
+import "bootstrap/dist/css/bootstrap.min.css"
 
 config.autoAddCss = false
 
 export default ({ children }) => (
   <div>
-    
     <Header />
-    <OutboundLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-google-gtag/">
-    </OutboundLink>
+    <OutboundLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-google-gtag/"></OutboundLink>
 
     {children}
 
