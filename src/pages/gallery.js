@@ -13,15 +13,15 @@ import "../styles/galley.module.css"
 export default ({ data, location }) => {
   const [show, setShow] = useState(false)
   const [modalPhoto, setModalPhoto] = useState(false)
-  const showModal = node => {
-    console.log(node, "bbbbbbbbb")
+  const showModal = (node, i) => {
+    console.log(node, "bbbbbbbbb", i)
     setShow(true)
     setModalPhoto(node)
   }
-  const GatsbyImages = data.photos.nodes.map(node => {
+  const GatsbyImages = data.photos.nodes.map((node, i) => {
     return (
       <ImageListItem className="photo-gallery" key={node.id}>
-        <a href="#" onClick={() => showModal(node)}>
+        <a href="#" onClick={() => showModal(node, i)}>
           <img
             className="photo-gallery-image"
             src={`${node.photo.url}?w=248&fit=crop&auto=format`}

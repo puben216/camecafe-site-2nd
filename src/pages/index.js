@@ -59,6 +59,7 @@ export default ({ data }) => {
   return (
     <div>
       <Layout>
+        <Seo title="トップページ" pagetitle="カメカフェのトップページ" />
         <section className="hero">
           <figure></figure>
           <div className="catch">
