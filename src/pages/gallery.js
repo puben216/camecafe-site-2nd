@@ -13,10 +13,16 @@ import "../styles/galley.module.css"
 export default ({ data, location }) => {
   const [show, setShow] = useState(false)
   const [modalPhoto, setModalPhoto] = useState(false)
+  const [photoIndex, setPhotoIndex] = useState(0)
   const showModal = (node, i) => {
     console.log(node, "bbbbbbbbb", i)
     setShow(true)
     setModalPhoto(node)
+    setPhotoIndex(i)
+  }
+  const slideNode = index => {
+    setModalPhoto(data.photos.nodes[index])
+    setPhotoIndex(index)
   }
   const GatsbyImages = data.photos.nodes.map((node, i) => {
     return (
@@ -64,7 +70,14 @@ export default ({ data, location }) => {
       <ImageList variant="masonry" cols={masonryColumn} gap={8}>
         {GatsbyImages}
       </ImageList>
-      <Modal show={show} setShow={setShow} node={modalPhoto} />
+      <Modal
+        show={show}
+        setShow={setShow}
+        node={modalPhoto}
+        photoIndex={photoIndex}
+        slideNode={slideNode}
+        maxIndex={data.photos.nodes.length}
+      />
       <br />
       <br />
       <br />
