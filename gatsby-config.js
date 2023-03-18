@@ -6,10 +6,10 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `カメカフェ`,
+    description: `カメラサークル「カメカフェ」のサイト`,
+    author: `@カメカフェ`,
+    siteUrl: `https://camecafe.net`,
   },
   plugins: [
     "gatsby-plugin-netlify",
@@ -36,7 +36,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
+        name: `カメカフェ`,
         short_name: `starter`,
         start_url: `/`,
         background_color: `#663399`,
