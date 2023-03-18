@@ -417,6 +417,7 @@ img {
 .sns {
   display: flex;
   list-style: none;
+  padding-left: 0px;
   font-size: 40px;
 }
 
