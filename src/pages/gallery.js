@@ -11,9 +11,14 @@ import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material"
 import "../styles/galley.module.css"
 
 export default ({ data, location }) => {
+  const dispPerLength = 25
+  const [imageStart, setImageStart] = useState(0)
   const [show, setShow] = useState(false)
   const [modalPhoto, setModalPhoto] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
+  const [currentPhotoMaxLength, setCurrentPhotoMaxLength] =
+    useState(dispPerLength)
+
   const showModal = (node, i) => {
     console.log(node, "bbbbbbbbb", i)
     setShow(true)
@@ -24,20 +29,23 @@ export default ({ data, location }) => {
     setModalPhoto(data.photos.nodes[index])
     setPhotoIndex(index)
   }
-  const GatsbyImages = data.photos.nodes.map((node, i) => {
-    return (
-      <ImageListItem className="photo-gallery" key={node.id}>
-        <a href="#" onClick={() => showModal(node, i)}>
-          <img
-            className="photo-gallery-image"
-            src={`${node.photo.url}?w=248&fit=crop&auto=format`}
-            srcSet={`${node.photo.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            loading="lazy"
-          />
-        </a>
-      </ImageListItem>
-    )
-  })
+
+  const GatsbyImages = data.photos.nodes
+    .slice(0, currentPhotoMaxLength)
+    .map((node, i) => {
+      return (
+        <ImageListItem className="photo-gallery" key={node.id}>
+          <a href="#" onClick={() => showModal(node, i)}>
+            <img
+              className="photo-gallery-image"
+              src={`${node.photo.url}?w=248&fit=crop&auto=format`}
+              srcSet={`${node.photo.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              loading="lazy"
+            />
+          </a>
+        </ImageListItem>
+      )
+    })
 
   const getMasonryColumn = () => {
     let documentWindow = null
@@ -64,10 +72,30 @@ export default ({ data, location }) => {
     return () => window.removeEventListener("resize", onResize)
   }, [])
 
+  const changeMaxLength = () => {
+    const innerHeight = window.innerHeight
+    const currentHeight = window.scrollY
+    const perHeight = 300
+    const photoMaxLenth = Math.ceil(currentHeight / perHeight) * dispPerLength
+    if (currentPhotoMaxLength < photoMaxLenth) {
+      setCurrentPhotoMaxLength(photoMaxLenth)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeMaxLength)
+    return () => window.removeEventListener("scroll", changeMaxLength)
+  }, [])
+
   return (
     <Layout>
       <Seo title="Page two" />
-      <ImageList variant="masonry" cols={masonryColumn} gap={8}>
+      <ImageList
+        variant="masonry"
+        id="photo-galleries"
+        cols={masonryColumn}
+        gap={8}
+      >
         {GatsbyImages}
       </ImageList>
       <Modal
