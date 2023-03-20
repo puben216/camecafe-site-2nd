@@ -20,18 +20,26 @@ export default ({ data, location }) => {
     useState(dispPerLength)
 
   const showModal = (node, i) => {
-    console.log(node, "bbbbbbbbb", i)
     setShow(true)
-    setModalPhoto(node)
     setPhotoIndex(i)
+    setModalPhoto(node)
   }
   const slideNode = index => {
-    setModalPhoto(data.photos.nodes[index])
     setPhotoIndex(index)
+    setModalPhoto(data.photos.nodes[index])
   }
 
   const GatsbyImages = data.photos.nodes
     .slice(0, currentPhotoMaxLength)
+    .sort((first, second) => {
+      if (first.shoot_date > second.shoot_date) {
+        return -1
+      } else if (first.shoot_date < second.shoot_date) {
+        return 1
+      } else {
+        return 0
+      }
+    })
     .map((node, i) => {
       return (
         <ImageListItem className="photo-gallery" key={node.id}>

@@ -72,7 +72,7 @@ module.exports = {
             endpoint: "photos",
           },
           {
-            endpoint: "register_photo",
+            endpoint: "infomation",
           },
         ],
       },

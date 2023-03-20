@@ -7,6 +7,10 @@ import Seo from "../components/seo"
 import Img from "gatsby-image"
 import parse from "html-react-parser"
 
+const date = new Date().setDate(-30)
+const limitDate = new Date(date).toISOString()
+console.log(date, "aaaaaaaaaaaaaaaa", limitDate, limitDate)
+
 export const query = graphql`
   query {
     allMicrocmsBlog(limit: 3, sort: { fields: createdAt, order: DESC }) {
@@ -18,6 +22,24 @@ export const query = graphql`
         samne {
           url
           height
+          width
+        }
+      }
+    }
+    allMicrocmsInfomation(filter: { date: { gt: "20221001" } }) {
+      nodes {
+        id
+        endtime
+        date
+        createdAt
+        content
+        place
+        starttime
+        title
+        type
+        main_image {
+          height
+          url
           width
         }
       }
@@ -51,10 +73,34 @@ export default ({ data }) => {
     )
   })
 
-  let news = []
-  for (let i = 0; i < 3 && i < newsQuery.length; i++) {
-    news.push(<div className="detail"></div>)
-  }
+  const informations = data.allMicrocmsInfomation.nodes.map(blog => {
+    let image = null
+    if (blog.main_image) {
+      // image = <img src={blog.main_image.url} alt="" />
+      image = (
+        <a
+          href="#"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">お知らせ1</h5>
+            <small>2023-03-20</small>
+          </div>
+          <p class="mb-1">お知らせ1の詳細情報</p>
+        </a>
+      )
+    } else {
+      image = <StaticImage src="../images/noimage2.jpg" alt="no image" />
+    }
+    console.log(image)
+    console.log("(image)")
+    return (
+      <Link to={`/event/${blog.id}`} key={blog.id}>
+        {image}
+      </Link>
+    )
+  })
 
   return (
     <div>
@@ -70,7 +116,7 @@ export default ({ data }) => {
         <section className="food">
           <div className="container">
             <h2 className="bar">お知らせ</h2>
-            <div className="details">{news}</div>
+            <div class="list-group mb-12 mt-12">{informations}</div>
           </div>
         </section>
 

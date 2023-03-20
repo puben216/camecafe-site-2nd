@@ -18,6 +18,14 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+
+        allMicrocmsInfomation {
+          edges {
+            node {
+              id
+            }
+          }
+        }
       }
     `
   ).then(result => {
@@ -29,6 +37,15 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage({
         path: `/blog/${edge.node.id}`,
         component: path.resolve("./src/templates/blog-detail.js"),
+        context: {
+          id: edge.node.id,
+        },
+      })
+    })
+    result.data.allMicrocmsInfomation.edges.forEach(edge => {
+      createPage({
+        path: `/event/${edge.node.id}`,
+        component: path.resolve("./src/templates/event-detail.js"),
         context: {
           id: edge.node.id,
         },
