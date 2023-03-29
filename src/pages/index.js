@@ -7,6 +7,8 @@ import Seo from "../components/seo"
 import Img from "gatsby-image"
 import parse from "html-react-parser"
 
+import "../styles/index.css"
+
 const date = new Date().setDate(-30)
 const limitDate = new Date(date).toISOString()
 console.log(date, "aaaaaaaaaaaaaaaa", limitDate, limitDate)
@@ -76,13 +78,19 @@ export default ({ data }) => {
   const informations = data.allMicrocmsInfomation.nodes.map(blog => {
     let image = null
     if (blog.main_image) {
-      // image = <img src={blog.main_image.url} alt="" />
       image = (
         <a
           href="#"
           class="list-group-item list-group-item-action"
           aria-current="true"
         >
+          <div className="circle-thumbnail">
+            <img
+              src={blog.main_image.url}
+              alt="サムネイル画像"
+              className="img-fluid"
+            />
+          </div>
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">お知らせ1</h5>
             <small>2023-03-20</small>
