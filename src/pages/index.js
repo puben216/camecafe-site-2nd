@@ -78,24 +78,29 @@ export default ({ data }) => {
   const informations = data.allMicrocmsInfomation.nodes.map(blog => {
     let image = null
     if (blog.main_image) {
+      const infomationDate = new Date(blog.date)
+      const formatter = new Intl.DateTimeFormat("ja-JP", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+      const formattedInfomationDate = formatter.format(infomationDate)
+      // お知らせバーのhtmlを作成。内容はサムネ、タイトル、日付
       image = (
         <a
           href="#"
-          class="list-group-item list-group-item-action"
+          className="list-group-item list-group-item-action"
           aria-current="true"
         >
-          <div className="circle-thumbnail">
-            <img
-              src={blog.main_image.url}
-              alt="サムネイル画像"
-              className="img-fluid"
-            />
+          <img
+            src={blog.main_image.url}
+            alt="サムネイル画像"
+            className="circle-thumbnail me-3"
+          />
+          <div className="announcement-text d-flex w-100 justify-content-between">
+            <div className="announcement-title">{blog.title}</div>
+            <div className="announcement-date">{formattedInfomationDate}</div>
           </div>
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">お知らせ1</h5>
-            <small>2023-03-20</small>
-          </div>
-          <p class="mb-1">お知らせ1の詳細情報</p>
         </a>
       )
     } else {
@@ -124,7 +129,7 @@ export default ({ data }) => {
         <section className="food">
           <div className="container">
             <h2 className="bar">お知らせ</h2>
-            <div class="list-group mb-12 mt-12">{informations}</div>
+            <div class="announcement-list mb-12 mt-12">{informations}</div>
           </div>
         </section>
 

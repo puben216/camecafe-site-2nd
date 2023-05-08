@@ -1,12 +1,50 @@
-.circle-thumbnail {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: inline-block;
+.list-group-item {
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
-.circle-thumbnail img {
-  width: 100%;
-  height: auto;
+.list-group-item img {
+  margin-right: 10px;
+}
+
+.list-group-item:hover {
+  background-color: #add8e6;
+}
+
+.list-group {
+  height: 350px; /* 指定の高さ */
+  overflow-y: auto; /* 垂直方向にスクロールバーを表示する */
+}
+
+.announcement-item {
+  max-height: 100px; /* 適宜調整 */
+  overflow-y: auto; /* 高さを超えた場合はスクロールバーを表示する */
+}
+
+.circle-thumbnail {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.announcement-text {
+  font-size: 1.5rem;
+}
+
+.announcement-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.announcement-date {
+  color: #888;
+}
+
+.announcement-description {
+  margin-top: 5px;
 }
