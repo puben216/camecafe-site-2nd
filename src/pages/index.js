@@ -28,7 +28,10 @@ export const query = graphql`
         }
       }
     }
-    allMicrocmsInfomation(filter: { date: { gt: "20221001" } }) {
+    allMicrocmsInfomation(
+      filter: { date: { gt: "20221001" } }
+      sort: { fields: date, order: DESC }
+    ) {
       nodes {
         id
         endtime
@@ -103,11 +106,7 @@ export default ({ data }) => {
           </div>
         </a>
       )
-    } else {
-      image = <StaticImage src="../images/noimage2.jpg" alt="no image" />
     }
-    console.log(image)
-    console.log("(image)")
     return (
       <Link to={`/event/${blog.id}`} key={blog.id}>
         {image}

@@ -2,11 +2,11 @@ import React from "react"
 import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCamera } from "@fortawesome/free-solid-svg-icons"
-import { Navbar, Nav } from "react-bootstrap"
+import { Navbar, Nav, NavDropdown } from "react-bootstrap"
 
 export default () => (
   <header className="header">
-    <div className="container">
+    <div className="conta iner">
       <div className="site">
         <Link to={`/`}>
           <FontAwesomeIcon icon={faCamera} />
@@ -29,6 +29,14 @@ export default () => (
               <Nav.Link href="">
                 <Link to={`/faq/`}>FAQ</Link>
               </Nav.Link>
+              <NavDropdown title="BLOG" id="nav-dropdown">
+                <NavDropdown.Item href="">
+                  <Link to={`/blog/event`}>event </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="">
+                  <Link to={`/blog/submenu2`}>photo</Link>
+                </NavDropdown.Item>
+              </NavDropdown>
               <Nav.Link href="">
                 <Link to={`/login/`}>LOGIN</Link>
               </Nav.Link>

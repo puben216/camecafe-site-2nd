@@ -1,0 +1,15 @@
+.announcement-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.announcement-date,
+.announcement-location {
+  font-size: 1.2rem;
+}
+
+.announcement-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}

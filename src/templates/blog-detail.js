@@ -12,12 +12,16 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <Seo title="Using DSG" />
-      <h1>{blog.title}</h1>
-      <p>{blog.updatedAt}</p>
-      <h2>{blog.subtitle}</h2>
-      <ul>{category}</ul>
-      <div dangerouslySetInnerHTML={{ __html: blog.content }} />
-      <Link to="/">トップへ戻る</Link>
+      <div className="container">
+        <h1>{blog.title}</h1>
+        <p>更新日時：{blog.updatedAt}</p>
+        <h2>{blog.subtitle}</h2>
+        <p>撮影日：{blog.date}</p>
+        <p>天気：{blog.weather}</p>
+        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+        <br />
+        <Link to="/">トップへ戻る</Link>
+      </div>
     </Layout>
   )
 }

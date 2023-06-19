@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Announcement from "../components/Announcement/announcement"
 
 const Blog = ({ data }) => {
   const blog = data.microcmsInfomation
@@ -9,10 +10,7 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <Seo title="Using DSG" />
-      <h1>{blog.title}</h1>
-      <p>{blog.updatedAt}</p>
-      <h2>{blog.place}</h2>
-      <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+      <Announcement event={blog} />
       <Link to="/">トップへ戻る</Link>
     </Layout>
   )

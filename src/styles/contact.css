@@ -1,0 +1,29 @@
+.container2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+  padding: 20px;
+}
+
+.icon {
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+.contact-title {
+  text-align: center;
+  margin: auto;
+}
+
+.fa-line {
+  color: #00c300;
+}
+
+.fa-instagram-contact {
+  color: #e1306c;
+}
