@@ -1,7 +1,6 @@
 import React from "react"
 import { Container, Row, Col, Card } from "react-bootstrap"
 import "../../styles/announcement.css"
-import ReactMarkdown from "react-markdown"
 
 const Announcement = ({ event }) => {
   return (
@@ -38,9 +37,7 @@ const Announcement = ({ event }) => {
                 イベント終了時刻: {event.endTime}
               </Card.Text>
               <Card.Text className="announcement-text">
-                <ReactMarkdown>
-                  <div dangerouslySetInnerHTML={{ __html: event.content }} />
-                </ReactMarkdown>
+                <div dangerouslySetInnerHTML={{ __html: event.content }} />
               </Card.Text>
             </Card.Body>
           </Card>
