@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import Announcement from "../components/Announcement/announcement"
+import Announcement from "../components/announcement/announcement"
 
 const Blog = ({ data }) => {
   const blog = data.microcmsInfomation
