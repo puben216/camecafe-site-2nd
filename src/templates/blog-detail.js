@@ -13,11 +13,14 @@ const Blog = ({ data }) => {
     <Layout>
       <Seo title="Using DSG" />
       <div className="container">
-        <h1>{blog.title}</h1>
         <p>更新日時：{blog.updatedAt}</p>
+        <h1>{blog.title}</h1>
         <h2>{blog.subtitle}</h2>
-        <p>撮影日：{blog.date}</p>
-        <p>天気：{blog.weather}</p>
+        <div>場所：{blog.place}</div>
+        <div>撮影日：{blog.date}</div>
+        <div>時間：{blog.photo_time}</div>
+        <div>天気：{blog.weather}</div>
+
         <div dangerouslySetInnerHTML={{ __html: blog.content }} />
         <br />
         <Link to="/">トップへ戻る</Link>
@@ -36,6 +39,10 @@ export const query = graphql`
       category
       content
       datetime
+      date
+      photo_time
+      weather
+      place
       samne {
         url
       }

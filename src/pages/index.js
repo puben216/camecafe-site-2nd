@@ -9,18 +9,17 @@ import parse from "html-react-parser"
 
 import "../styles/index.css"
 
-const date = new Date().setDate(-30)
-const limitDate = new Date(date).toISOString()
-console.log(date, "aaaaaaaaaaaaaaaa", limitDate, limitDate)
-
 export const query = graphql`
   query {
-    allMicrocmsBlog(limit: 3, sort: { fields: createdAt, order: DESC }) {
+    allMicrocmsBlog(limit: 3, sort: { fields: date, order: DESC }) {
       nodes {
         id
         category
         title
         content
+        subtitle
+        place
+        date
         samne {
           url
           height
@@ -64,20 +63,30 @@ export default ({ data }) => {
     } else {
       image = <StaticImage src="../images/noimage2.jpg" alt="no image" />
     }
-    console.log(image)
-    console.log("(image)")
+    const dateObject = new Date(blog.date)
+    const year = dateObject.getFullYear()
+    const month = dateObject.getMonth() + 1 // JavaScriptの月は0から始まるため
+    const day = dateObject.getDate()
     return (
       <div className="detail" key={blog.id}>
         <Link to={`/blog/${blog.id}`}>
-          <h3>{blog.title}</h3>
-          <figure>{image}</figure>
+          <h4>
+            {year}年{month}月{day}日
+          </h4>
+          <h4>{blog.title}</h4>
+          <figure className="blog-image-thumbnail">{image}</figure>
+          <h4>{blog.place}</h4>
           <p>{blog.subtitle}</p>
-          <p>{parse(blog.content.substring(0, 140))}</p>
         </Link>
       </div>
     )
   })
 
+  const currentDate = new Date()
+  const year = currentDate.getFullYear()
+  const month = ("0" + (currentDate.getMonth() + 1)).slice(-2)
+  const day = ("0" + currentDate.getDate()).slice(-2)
+  const formattedDate = year.toString() + month.toString() + day.toString()
   const informations = data.allMicrocmsInfomation.nodes.map(blog => {
     let image = null
     if (blog.main_image) {
