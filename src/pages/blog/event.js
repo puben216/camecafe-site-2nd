@@ -6,37 +6,40 @@ import { Card, Row, Col } from "react-bootstrap"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 
+import "../../styles/blog.css"
+
 export default ({ data, location }) => {
   return (
     <Layout>
       <Seo title="Blog" />
 
       <div className="container mt-8">
-        {data.allMicrocmsBlog.nodes.map(node => (
-          <Row className="mb-8" key={node.id}>
-            <Col md={3}>
-              <Link to={`/blog/${node.id}`}>
-                <Img fluid="" />
-              </Link>
-            </Col>
-            <Col md={9}>
-              <Card>
-                <Card.Body>
-                  <Card.Title>
-                    <Link to={`/blog/${node.id}`}>{node.title}</Link>
-                  </Card.Title>
-                  <Card.Text>{node.excerpt}</Card.Text>
-                  <Card.Footer>
-                    <small className="text-muted">
-                      Posted on node.frontmatter.date in
-                      node.frontmatter.category
-                    </small>
-                  </Card.Footer>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        ))}
+        {data.allMicrocmsBlog.nodes.map(node => {
+          const date = new Date(node.date)
+          const formatter = new Intl.DateTimeFormat("ja-JP", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+          const formattedBlogDate = formatter.format(date)
+          return (
+            <Link to={`/blog/${node.id}`}>
+              <Row className="mb-8 blog-item" key={node.id}>
+                <Col md={4} lg={4} className="mb-8 blog-item-col-img">
+                  <img className="blog-img" src={node.samne.url} />
+                </Col>
+                <Col md={8} lg={8}>
+                  <p>
+                    <h2>{node.title}</h2>
+                  </p>
+                  <p>
+                    <h3>{formattedBlogDate}</h3>
+                  </p>
+                </Col>
+              </Row>
+            </Link>
+          )
+        })}
       </div>
     </Layout>
   )
@@ -50,6 +53,8 @@ export const query = graphql`
         category
         title
         content
+        subtitle
+        date
         samne {
           url
           height

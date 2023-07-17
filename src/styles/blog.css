@@ -1,0 +1,20 @@
+.blog-item {
+  height: 150px;
+  margin: 10px;
+  border: 1px solid gray;
+}
+
+.blog-item-col-img {
+  position: relative;
+  background-color: gray;
+}
+
+.blog-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  border-radius: 15%;
+  top: 0;
+  left: 0;
+}
