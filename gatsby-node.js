@@ -15,6 +15,8 @@ exports.createPages = async ({ graphql, actions }) => {
           edges {
             node {
               id
+              blogId
+              title
             }
           }
         }
@@ -33,12 +35,17 @@ exports.createPages = async ({ graphql, actions }) => {
       throw result.errors
     }
 
-    result.data.allMicrocmsBlog.edges.forEach(edge => {
+    const posts = result.data.allMicrocmsBlog.edges
+    posts.forEach((post, index) => {
+      const previous = index === posts.length - 1 ? null : posts[index + 1].node
+      const next = index === 0 ? null : posts[index - 1].node
       createPage({
-        path: `/blog/${edge.node.id}`,
+        path: `/blog/${post.node.id}`,
         component: path.resolve("./src/templates/blog-detail.js"),
         context: {
-          id: edge.node.id,
+          id: post.node.id,
+          previous: previous,
+          next: next,
         },
       })
     })

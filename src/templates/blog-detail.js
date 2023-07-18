@@ -2,13 +2,18 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { Container, Row, Col, Card } from "react-bootstrap"
 
-const Blog = ({ data }) => {
+const Blog = ({ data, pageContext }) => {
   const blog = data.microcmsBlog
   const category = blog.category.map(node => {
     return <li>{node}</li>
   })
-
+  const { previous, next } = pageContext
+  console.log("BBBBBB")
+  console.log(pageContext)
+  console.log(previous)
+  console.log(next)
   return (
     <Layout>
       <Seo title="Using DSG" />
@@ -22,6 +27,27 @@ const Blog = ({ data }) => {
         <div>天気：{blog.weather}</div>
 
         <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+        <br />
+
+        <Container>
+          <Row>
+            <Col lg={2}>
+              {previous && (
+                <Link to={`/blog/${previous.id}`} rel="prev">
+                  ← {previous.title}
+                </Link>
+              )}
+            </Col>
+            <Col lg={8}></Col>
+            <Col lg={2}>
+              {next && (
+                <Link to={`/blog/${next.id}`} rel="next">
+                  {next.title} →
+                </Link>
+              )}
+            </Col>
+          </Row>
+        </Container>
         <br />
         <Link to="/">トップへ戻る</Link>
       </div>
