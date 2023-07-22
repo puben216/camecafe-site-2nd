@@ -28,6 +28,7 @@ export const query = graphql`
       }
     }
     allMicrocmsInfomation(
+      limit: 4
       filter: { date: { gt: "20221001" } }
       sort: { fields: date, order: DESC }
     ) {

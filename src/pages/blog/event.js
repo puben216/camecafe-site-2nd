@@ -5,6 +5,7 @@ import { Card, Row, Col } from "react-bootstrap"
 
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
+import { formatYmd } from "../../utils/helpers"
 
 import "../../styles/blog.css"
 
@@ -15,13 +16,7 @@ export default ({ data, location }) => {
 
       <div className="container mt-8">
         {data.allMicrocmsBlog.nodes.map(node => {
-          const date = new Date(node.date)
-          const formatter = new Intl.DateTimeFormat("ja-JP", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
-          const formattedBlogDate = formatter.format(date)
+          const formattedBlogDate = formatYmd(node.date)
           return (
             <Link to={`/blog/${node.id}`}>
               <Row className="mb-8 blog-item" key={node.id}>
