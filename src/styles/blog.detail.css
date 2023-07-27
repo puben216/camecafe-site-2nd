@@ -1,0 +1,29 @@
+/* 見出しの装飾 */
+h3 {
+  padding-bottom: 16px;
+  position: relative;
+}
+h3::before,
+h3::after {
+  display: block;
+  content: "";
+  background-color: #0facde;
+  width: 80%;
+  height: 1px;
+  position: absolute;
+}
+h3::before {
+  left: 0;
+  bottom: 6px;
+}
+h3::after {
+  right: 0;
+  bottom: 0;
+}
+.login-title {
+  text-align: center;
+}
+
+.content h3::before {
+  width: 200px;
+}

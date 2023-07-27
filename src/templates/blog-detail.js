@@ -6,6 +6,8 @@ import parse from "html-react-parser"
 import { Container, Row, Col } from "react-bootstrap"
 import { formatYmd } from "../utils/helpers"
 
+import "../styles/blog.detail.css"
+
 const Blog = ({ data, pageContext }) => {
   const blog = data.microcmsBlog
   const category = blog.category.map(node => {
@@ -56,15 +58,15 @@ const Blog = ({ data, pageContext }) => {
 
         <Container>
           <Row>
-            <Col lg={2}>
+            <Col xs={5} lg={2}>
               {previous && (
                 <Link to={`/blog/${previous.id}`} rel="prev">
                   ← {previous.title}
                 </Link>
               )}
             </Col>
-            <Col lg={8}></Col>
-            <Col lg={2}>
+            <Col xs={1} lg={8}></Col>
+            <Col xs={5} lg={2}>
               {next && (
                 <Link to={`/blog/${next.id}`} rel="next">
                   {next.title} →

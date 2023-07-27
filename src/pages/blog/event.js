@@ -12,7 +12,7 @@ import "../../styles/blog.css"
 export default ({ data, location }) => {
   return (
     <Layout>
-      <Seo title="Blog" />
+      <Seo title="イベントブログ一覧" />
 
       <div className="container mt-8">
         {data.allMicrocmsBlog.nodes.map(node => {
@@ -20,10 +20,10 @@ export default ({ data, location }) => {
           return (
             <Link to={`/blog/${node.id}`}>
               <Row className="mb-8 blog-item" key={node.id}>
-                <Col md={4} lg={4} className="mb-8 blog-item-col-img">
+                <Col xs={5} md={4} lg={4} className="mb-8 blog-item-col-img">
                   <img className="blog-img" src={node.samne.url} />
                 </Col>
-                <Col md={8} lg={8}>
+                <Col xs={7} md={8} lg={8}>
                   <p>
                     <h2>{node.title}</h2>
                   </p>
@@ -42,7 +42,7 @@ export default ({ data, location }) => {
 
 export const query = graphql`
   query {
-    allMicrocmsBlog(sort: { fields: createdAt, order: DESC }) {
+    allMicrocmsBlog(sort: { fields: date, order: DESC }) {
       nodes {
         id
         category
