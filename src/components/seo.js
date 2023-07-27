@@ -7,7 +7,6 @@
 
 import * as React from "react"
 import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 function Seo({ description, lang, meta, title }) {
@@ -26,64 +25,35 @@ function Seo({ description, lang, meta, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const defaultTitle = title + " | " + site.siteMetadata?.title
+  const props = {
+    metaDescription: metaDescription,
+    title: defaultTitle,
+    author: site.siteMetadata?.author
+      ? site.siteMetadata.author
+      : "写真サークル｜カメカフェ",
+  }
 
+  return <Head {...props} />
+}
+
+export const Head = ({ title, metaDescription, author }) => {
+  console.log(title)
+  console.log(metaDescription)
+  console.log(author)
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : `カメカフェ`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    <>
+      <meta charset="utf-8" />
+      <meta http-equiv="Content-Language" content="ja" />
+      <meta name="google" content="notranslate" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <title>{title}</title>
+      <meta name="description" content="{metaDescription}" />
+      <meta content="{metaDescription}" />
+      <meta name="twitter:creator" content="@{author}" />
+      <meta name="twitter:description" content="{metaDescription}" />
+    </>
   )
-}
-
-Seo.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
-
-Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 }
 
 export default Seo

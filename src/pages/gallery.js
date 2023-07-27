@@ -97,7 +97,7 @@ export default ({ data, location }) => {
 
   return (
     <Layout>
-      <Seo title="Page two" />
+      <Seo title="ギャラリー" />
       <ImageList
         variant="masonry"
         id="photo-galleries"

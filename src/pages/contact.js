@@ -8,7 +8,7 @@ import "../styles/contact.css"
 
 const Contact = () => (
   <Layout>
-    <Seo title="Page two" />
+    <Seo title="お問い合わせ" />
 
     <div>
       <div class="contact-title">

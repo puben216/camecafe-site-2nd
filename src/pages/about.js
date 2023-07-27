@@ -11,14 +11,7 @@ import SEO from "../components/seo"
 
 export default ({ data, location }) => (
   <Layout>
-    <SEO
-      pagetitle="カメカフェ について"
-      pagedesc="東京を中心に初心者向けに活動しているカメラサークルです。"
-      pagepath={location.pathname}
-      pageimg={data.about.childImageSharp.original.src}
-      pageimgw={data.about.childImageSharp.original.width}
-      pageimgh={data.about.childImageSharp.original.height}
-    />
+    <SEO title="カメカフェについて" />
     <div className="eyecatch">
       <figure>
         <Img

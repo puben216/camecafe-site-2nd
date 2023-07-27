@@ -31,7 +31,7 @@ const Blog = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <Seo title="Using DSG" />
+      <Seo title="ブログ" />
       <div className="container">
         <p>更新日時：{blog.updatedAt}</p>
         <h1>{blog.title}</h1>
