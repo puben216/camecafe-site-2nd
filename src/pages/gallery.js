@@ -23,6 +23,20 @@ export default ({ data, location }) => {
     setModalPhoto(node)
   }
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const colsValue = windowWidth <= 768 ? 3 : 4
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
@@ -44,7 +58,12 @@ export default ({ data, location }) => {
   return (
     <Layout>
       <Seo title="ギャラリー" />
-      <ImageList variant="masonry" id="photo-galleries" cols={4} gap={8}>
+      <ImageList
+        variant="masonry"
+        id="photo-galleries"
+        cols={colsValue}
+        gap={8}
+      >
         {data.photos.nodes.slice(0, currentPhotoMaxLength).map((node, i) => (
           <ImageListItem className="photo-gallery" key={node.id}>
             <a

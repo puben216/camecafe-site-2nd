@@ -49,8 +49,23 @@
   align-items: center; /* 中央寄せ */
 }
 
+/* 768px以下のデバイスのためのメディアクエリ */
+@media (max-width: 768px) {
+  .modalContent {
+    width: 100vw; /* 画面の100%の幅に変更 */
+    padding: 10px; /* 必要に応じてパディングを調整 */
+  }
+
+  .modalContent img {
+    max-width: 100vw; /* 画面の90%の幅まで */
+    width: auto;
+    height: auto;
+  }
+}
+
 /* 画像のスタイル */
 .modalContent img {
   max-height: 90vh; /* ビューポートの高さの90%まで */
   width: auto; /* 幅は自動でアスペクト比を保持 */
+  -webkit-user-drag: none;
 }
