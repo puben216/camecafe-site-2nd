@@ -1,0 +1,56 @@
+.modal-image-section {
+  position: relative;
+}
+
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 2em;
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 10;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+/* モーダルのスタイル */
+.modalOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.modalContent {
+  width: 80vw; /* 画面の80%の幅 */
+  height: 80vh; /* 画面の80%の高さ */
+  background-color: grey; /* 画像の余白の色をグレーに設定 */
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* スクロールを非表示にする */
+  position: relative;
+  display: flex;
+  justify-content: center; /* 中央寄せ */
+  align-items: center; /* 中央寄せ */
+}
+
+/* 画像のスタイル */
+.modalContent img {
+  max-height: 90vh; /* ビューポートの高さの90%まで */
+  width: auto; /* 幅は自動でアスペクト比を保持 */
+}
