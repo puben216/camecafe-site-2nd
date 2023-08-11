@@ -11,7 +11,7 @@ exports.createPages = async ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allMicrocmsBlog {
+        allMicrocmsBlog(sort: { fields: [date], order: ASC }) {
           edges {
             node {
               id
@@ -21,7 +21,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
 
-        allMicrocmsInfomation {
+        allMicrocmsInfomation(sort: { fields: [date], order: ASC }) {
           edges {
             node {
               id
