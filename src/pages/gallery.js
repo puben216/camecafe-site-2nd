@@ -23,8 +23,12 @@ export default ({ data, location }) => {
     setModalPhoto(node)
   }
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  const colsValue = windowWidth <= 768 ? 3 : 4
+  const [windowWidth, setWindowWidth] = useState(null)
+  const colsValue = windowWidth ? (windowWidth <= 768 ? 3 : 4) : 4
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
