@@ -24,6 +24,9 @@ export default () => (
                 <Link to={`/gallery/`}>GALLERY</Link>
               </Nav.Link>
               <Nav.Link href="">
+                <Link to={`/place/`}>PLACE</Link>
+              </Nav.Link>
+              <Nav.Link href="">
                 <Link to={`/contact/`}>CONTACT</Link>
               </Nav.Link>
               <Nav.Link href="">
