@@ -10,10 +10,17 @@ const MyMapComponent = ({ data }) => {
       style={{ width: "100%", height: "400px" }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {data.allMicrocmsBlog.nodes.map((location, index) => (
-        <Marker key={index} position={[35.681236, 139.767125]}>
+      {data.allMicrocmsBlog.nodes.map((blog, index) => (
+        <Marker
+          key={index}
+          position={[blog.latitude ?? 35.6895, blog.longitude ?? 139.6917]}
+        >
           <Popup>
-            <Link to={location.url}>リンクを表示</Link>
+            <Link to={`/blog/${blog.id}`}>
+              {blog.title}
+              <br />
+              場所：{blog.place}
+            </Link>
           </Popup>
         </Marker>
       ))}

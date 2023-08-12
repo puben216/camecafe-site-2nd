@@ -26,6 +26,9 @@ export const query = graphql`
         content
         subtitle
         date
+        longitude
+        latitude
+        place
         samne {
           url
           height
