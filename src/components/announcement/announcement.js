@@ -1,8 +1,19 @@
 import React from "react"
-import { Container, Row, Col, Card } from "react-bootstrap"
+import { Container, Row, Col, Card, Badge } from "react-bootstrap"
 import "../../styles/announcement.css"
+import { formatYmd } from "../../utils/helpers"
 
 const Announcement = ({ event }) => {
+  const formattedBlogDate = formatYmd(event.date)
+
+  const renderFlag = () => {
+    console.log("event")
+    console.log(event)
+    if (event.recruitment_flag === true) {
+      return <Badge bg="secondary">募集中</Badge>
+    }
+  }
+
   return (
     <Container>
       <Row className="my-4">
@@ -16,7 +27,7 @@ const Announcement = ({ event }) => {
                 <h1>{event.title}</h1>
               </Card.Title>
               <Card.Text className="announcement-date">
-                開催日: {event.date}
+                開催日: {formattedBlogDate}
               </Card.Text>
               <Card.Text className="announcement-location">
                 場所: {event.place}
@@ -28,7 +39,7 @@ const Announcement = ({ event }) => {
                 イベント終了時刻: {event.endtime}
               </Card.Text>
               <Card.Text className="announcement-capacity">
-                上限人数: {event.capacity}
+                上限人数: {event.capacity}　{renderFlag()}
               </Card.Text>
               <Card.Text className="announcement-text">
                 <div dangerouslySetInnerHTML={{ __html: event.content }} />

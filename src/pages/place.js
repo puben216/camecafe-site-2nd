@@ -36,5 +36,14 @@ export const query = graphql`
         }
       }
     }
+    allMicrocmsInfomation(filter: { recruitment_flag: { eq: true } }) {
+      nodes {
+        title
+        place
+        id
+        longitude
+        latitude
+      }
+    }
   }
 `
