@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCamera } from "@fortawesome/free-solid-svg-icons"
 import { Navbar, Nav, NavDropdown } from "react-bootstrap"
+import Search from "../components/search"
 
 export default () => (
   <header className="header">
@@ -45,6 +46,7 @@ export default () => (
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          <Navbar className="avvvvvv">{false && <Search />}</Navbar>
         </Navbar>
       </div>
     </div>
