@@ -31,6 +31,7 @@ export const query = graphql`
       title
       type
       updatedAt
+      recruitment_flag
       main_image {
         height
         url
