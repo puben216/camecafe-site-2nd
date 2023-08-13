@@ -132,7 +132,7 @@ export default ({ data }) => {
           <figure></figure>
           <div className="catch">
             <h1>カメカフェ</h1>
-            <p>東京を中心に活動する初心者向けカメラサークル</p>
+            <p>東京を中心に活動する初心者向け写真・カメラサークル</p>
           </div>
         </section>
         <section className="food">
