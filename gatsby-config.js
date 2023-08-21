@@ -89,6 +89,14 @@ module.exports = {
         queries: require("./src/utils/algolia-queries"),
       },
     },
+    {
+      resolve: "gatsby-source-airtable",
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        baseId: process.env.AIRTABLE_BASE_ID,
+        tableName: "camecafe_table",
+      },
+    },
     `gatsby-plugin-offline`,
   ],
 }
