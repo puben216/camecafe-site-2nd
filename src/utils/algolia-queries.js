@@ -8,17 +8,24 @@ const blogQuery = `{
       content
       subtitle
       date
+      internal {
+        # querying internal.contentDigest is required
+        contentDigest
+        type
+        owner
+      }
     }
   }
 }`
 
-function blogToAlgoliaRecord({ id, title, content, subtitle, date }) {
+function blogToAlgoliaRecord({ id, title, content, subtitle, date, internal }) {
   return {
     objectID: id,
     title,
     content,
     subtitle,
     date,
+    internal,
   }
 }
 
