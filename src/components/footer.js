@@ -31,14 +31,6 @@ export default () => {
       <div className="container">
         <div className="site">
           <Link to={`/`}>
-            <StaticImage
-              src="../images/ca.jpg"
-              alt=""
-              style={{
-                width: "225.65px",
-                height: "46.59px",
-              }}
-            />
             <p>Since　2019</p>
           </Link>
         </div>
