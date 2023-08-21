@@ -9,7 +9,7 @@ export default ({ data, location }) => {
     <Layout>
       <Seo title="イベントブログ一覧" />
 
-      <div className="container mt-8">
+      <div id="place_container" className="container mt-8">
         <MapContainer data={data} />
       </div>
     </Layout>

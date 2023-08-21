@@ -13,7 +13,7 @@ export default ({ data, location }) => (
   <Layout>
     <SEO
       pagetitle="カメカフェ について"
-      pagedesc="東京を中心に初心者向けに活動しているカメラサークルです。"
+      pagedesc="東京を中心に初心者向けに活動している写真・カメラサークルです。"
       pagepath={location.pathname}
       pageimg={data.about.childImageSharp.original.src}
       pageimgw={data.about.childImageSharp.original.width}
