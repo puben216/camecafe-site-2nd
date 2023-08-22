@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import PieChartComponent from "../components/graph/PieChartComponent"
+import PieChartComponent from "../components/graph/pieChartComponent"
 import { Card, Row, Col } from "react-bootstrap"
 
 export default ({ data }) => {
