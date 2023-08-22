@@ -28,6 +28,9 @@ export default () => (
                 <Link to={`/place/`}>PLACE</Link>
               </Nav.Link>
               <Nav.Link href="">
+                <Link to={`/data/`}>DATA</Link>
+              </Nav.Link>
+              <Nav.Link href="">
                 <Link to={`/contact/`}>CONTACT</Link>
               </Nav.Link>
               <Nav.Link href="">
@@ -41,12 +44,14 @@ export default () => (
                   <Link to={`/blog/submenu2`}>photo</Link>
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="">
-                <Link to={`/login/`}>LOGIN</Link>
-              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <Navbar className="avvvvvv">{false && <Search />}</Navbar>
+          <Navbar className="avvvvvv">
+            <Nav.Link href="">
+              <Link to={`/login/`}>LOGIN</Link>
+            </Nav.Link>
+            <Nav.Link href="">{false && <Search />}</Nav.Link>
+          </Navbar>
         </Navbar>
       </div>
     </div>
