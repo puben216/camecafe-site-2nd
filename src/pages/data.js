@@ -2,13 +2,55 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import PieChartComponent from "../components/graph/pieChartComponent"
+import {
+  PieChartComponent,
+  LineChartComponent,
+} from "../components/graph/chartComponent"
 import { Card, Row, Col } from "react-bootstrap"
 
 export default ({ data }) => {
   const colorCodeList = getColorCodeList()
   let prefectures = {}
   let municipalities = {}
+  let yearMonths = {}
+  let days = {}
+  let checkDate = {}
+  let currentDate = new Date(2021, 11, 1) // 月は0から始まるため、11は12月を意味する
+  let startTimePeriods = {}
+  let endTimePeriods = {}
+  let tmpStartPeriod = null
+
+  const today = new Date()
+  const currentYear = today.getFullYear()
+  const currentMonth = today.getMonth()
+  const weekDays = ["日", "月", "火", "水", "木", "金", "土"]
+  const weekDayValues = [...Array(weekDays.length)].map(() => 0)
+  const timePeriodLabels = ["朝", "昼", "夜"]
+  const shootTimePeriodLabels = {
+    60: "~60",
+    120: "~120",
+    180: "~180",
+    240: "~240",
+    241: "241~",
+  }
+  const shootTimePeriods = Object.keys(shootTimePeriodLabels).reduce(
+    (acc, label) => {
+      acc[label] = 0
+      return acc
+    },
+    {}
+  )
+
+  while (
+    currentDate.getFullYear() < currentYear ||
+    (currentDate.getFullYear() === currentYear &&
+      currentDate.getMonth() <= currentMonth)
+  ) {
+    yearMonths[`${currentDate.getFullYear()}/${currentDate.getMonth() + 1}`] = 0
+    // 次の月に進む
+    currentDate.setMonth(currentDate.getMonth() + 1)
+  }
+  console.log(data.allMicrocmsBlog.nodes)
   data.allMicrocmsBlog.nodes.map((blog, i) => {
     blog.prefectures?.map(
       (prefecture, i) =>
@@ -22,6 +64,57 @@ export default ({ data }) => {
           ? municipalities[municipality]++
           : 1)
     )
+
+    let blogDate = new Date(blog.date)
+    let yearMonth = `${blogDate.getFullYear()}/${blogDate.getMonth() + 1}`
+    if (
+      !checkDate[
+        `${blogDate.getFullYear()}/${
+          blogDate.getMonth() + 1
+        }/${blogDate.getDate()}`
+      ]
+    ) {
+      yearMonths[yearMonth] = yearMonths[yearMonth] + 1
+      checkDate[
+        `${blogDate.getFullYear()}/${
+          blogDate.getMonth() + 1
+        }/${blogDate.getDate()}`
+      ] = true
+    }
+
+    weekDayValues[blogDate.getDay()]++
+    console.log(blogDate)
+    if (blog.start_time) {
+      tmpStartPeriod = getTimePeriodFromString(blog.start_time)
+      startTimePeriods[tmpStartPeriod] = startTimePeriods[tmpStartPeriod]
+        ? startTimePeriods[tmpStartPeriod] + 1
+        : 1
+    }
+
+    if (blog.end_time) {
+      tmpStartPeriod = getTimePeriodFromString(blog.end_time)
+      endTimePeriods[tmpStartPeriod] = endTimePeriods[tmpStartPeriod]
+        ? endTimePeriods[tmpStartPeriod] + 1
+        : 1
+    }
+
+    if (blog.start_time && blog.end_time) {
+      let eventMinutes = calcMinutesBetweenTimeStrings(
+        blog.start_time,
+        blog.end_time
+      )
+      if (eventMinutes <= 60) {
+        shootTimePeriods[60]++
+      } else if (eventMinutes <= 120) {
+        shootTimePeriods[120]++
+      } else if (eventMinutes <= 180) {
+        shootTimePeriods[180]++
+      } else if (eventMinutes <= 240) {
+        shootTimePeriods[240]++
+      } else {
+        shootTimePeriods[241]++
+      }
+    }
   })
 
   const prefectureData = {
@@ -44,8 +137,55 @@ export default ({ data }) => {
       },
     ],
   }
+  const weekDayData = {
+    labels: Object.values(weekDays),
+    datasets: [
+      {
+        data: Object.values(weekDayValues),
+        backgroundColor: colorCodeList,
+        hoverBackgroundColor: colorCodeList,
+      },
+    ],
+  }
+  const startTimePeriodData = {
+    labels: Object.values(timePeriodLabels),
+    datasets: [
+      {
+        data: Object.keys(startTimePeriods)
+          .sort()
+          .map(key => startTimePeriods[key]),
+        backgroundColor: colorCodeList,
+        hoverBackgroundColor: colorCodeList,
+      },
+    ],
+  }
+  const endTimePeriodData = {
+    labels: Object.values(timePeriodLabels),
+    datasets: [
+      {
+        data: Object.keys(endTimePeriods)
+          .sort()
+          .map(key => endTimePeriods[key]),
+        backgroundColor: colorCodeList,
+        hoverBackgroundColor: colorCodeList,
+      },
+    ],
+  }
+  const shootTimePeriodData = {
+    labels: Object.values(shootTimePeriodLabels),
+    datasets: [
+      {
+        data: Object.keys(shootTimePeriodLabels).map(
+          key => shootTimePeriods[key]
+        ),
+        backgroundColor: colorCodeList,
+        hoverBackgroundColor: colorCodeList,
+      },
+    ],
+  }
+
   console.log(prefectureData, municipalityData)
-  const options = {
+  const circleOptions = {
     responsive: true,
     legend: {
       position: "top",
@@ -59,6 +199,36 @@ export default ({ data }) => {
       animateRotate: true,
     },
   }
+
+  const lineData = {
+    labels: Object.keys(yearMonths),
+    datasets: [
+      {
+        label: "開催回数",
+        data: Object.values(yearMonths),
+        borderColor: ["#FF6384"],
+        borderWidth: 2,
+        fill: false,
+      },
+    ],
+  }
+
+  const lineOptions = {
+    responsive: true,
+    legend: {
+      position: "top",
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  }
+
   return (
     <Layout>
       <Seo title="データで見る写真・カメラサークル「カメカフェ」" />
@@ -66,22 +236,93 @@ export default ({ data }) => {
       <div id="data_container" className="container mt-8">
         <Row className="tte">
           <h3>過去に撮影会を行った場所の情報</h3>
+          <Row className="tte">
+            <p>都道府県</p>
+          </Row>
+          <Row className="tte">
+            <PieChartComponent data={prefectureData} options={circleOptions} />
+          </Row>
+          <Row className="tte">
+            <p>市区町村</p>
+          </Row>
+          <Row className="tte">
+            <PieChartComponent
+              data={municipalityData}
+              options={circleOptions}
+            />
+          </Row>
         </Row>
         <Row className="tte">
-          <p>都道府県</p>
+          <h3>開催頻度</h3>
+          <Row className="tte">
+            <p></p>
+          </Row>
+          <Row className="tte">
+            <LineChartComponent data={lineData} options={lineOptions} />
+          </Row>
         </Row>
         <Row className="tte">
-          <PieChartComponent data={prefectureData} options={options} />
-        </Row>
-        <Row className="tte">
-          <p>市区町村</p>
-        </Row>
-        <Row className="tte">
-          <PieChartComponent data={municipalityData} options={options} />
+          <h3>過去に撮影会を行った時間の情報</h3>
+          <Row className="tte">
+            <p>開始時間（分）</p>
+          </Row>
+          <Row className="tte">
+            <PieChartComponent
+              data={startTimePeriodData}
+              options={circleOptions}
+            />
+          </Row>
+          <Row className="tte">
+            <p>終了時間</p>
+          </Row>
+          <Row className="tte">
+            <PieChartComponent
+              data={endTimePeriodData}
+              options={circleOptions}
+            />
+          </Row>
+          <Row className="tte">
+            <p>撮影時間</p>
+          </Row>
+          <Row className="tte">
+            <PieChartComponent
+              data={shootTimePeriodData}
+              options={circleOptions}
+            />
+          </Row>
+
+          <Row className="tte">
+            <p>曜日</p>
+          </Row>
+          <Row className="tte">
+            <PieChartComponent data={weekDayData} options={circleOptions} />
+          </Row>
         </Row>
       </div>
     </Layout>
   )
+}
+
+function getTimePeriodFromString(timeString) {
+  const [hours, minutes] = timeString.split(":").map(Number)
+
+  if (hours >= 0 && hours < 12) {
+    return 1 // "morning"
+  } else if (hours >= 12 && hours < 18) {
+    return 2 // "noon"
+  } else {
+    return 3 // "night"
+  }
+}
+
+function calcMinutesBetweenTimeStrings(startTimeString, endTimeString) {
+  const [startHours, startMinutes] = startTimeString.split(":").map(Number)
+  const [endHours, endMinutes] = endTimeString.split(":").map(Number)
+
+  const startMinutesTotal = startHours * 60 + startMinutes
+  const endMinutesTotal = endHours * 60 + endMinutes
+
+  return endMinutesTotal - startMinutesTotal
 }
 
 function getColorCodeList() {
@@ -121,7 +362,7 @@ function getColorCodeList() {
 
 export const query = graphql`
   query {
-    allMicrocmsBlog(sort: { fields: date, order: DESC }) {
+    allMicrocmsBlog(sort: { fields: date, order: ASC }) {
       nodes {
         id
         category
@@ -135,6 +376,8 @@ export const query = graphql`
         steps
         prefectures
         municipality
+        start_time
+        end_time
         samne {
           url
           height
