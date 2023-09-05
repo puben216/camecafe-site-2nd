@@ -41,11 +41,6 @@ export default () => {
             </a>
           </li>
           <li>
-            <a href="https://lin.ee/oEWkl4c">
-              <FontAwesomeIcon icon={faLine} />
-            </a>
-          </li>
-          <li>
             <a href="https://www.instagram.com/camecafe_circle__.2nd/">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
