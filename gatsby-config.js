@@ -35,20 +35,6 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `カメカフェ`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
         name: `camecafe（カメカフェ）`,
         short_name: `camecafe`,
         short_url: `/`,
@@ -85,17 +71,20 @@ module.exports = {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
         queries: require("./src/utils/algolia-queries"),
       },
     },
     {
       resolve: "gatsby-source-airtable",
       options: {
-        apiKey: process.env.AIRTABLE_API_KEY,
-        baseId: process.env.AIRTABLE_BASE_ID,
+        apiKey: process.env.GATSBY_AIRTABLE_API_KEY,
+        baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
         tableName: "camecafe_table",
       },
+    },
+    {
+      resolve: "@sentry/gatsby",
     },
     `gatsby-plugin-offline`,
   ],

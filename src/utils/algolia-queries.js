@@ -22,11 +22,15 @@ function blogToAlgoliaRecord({ id, title, content, subtitle, date, internal }) {
   return {
     objectID: id,
     title,
-    content,
+    content: removeHTMLTags(content),
     subtitle,
     date,
     internal,
   }
+}
+
+function removeHTMLTags(input) {
+  return input.replace(/<\/?[^>]+(>|$)/g, "")
 }
 
 const queries = [

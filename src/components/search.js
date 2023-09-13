@@ -1,45 +1,79 @@
-// components/Search.js
-import React, { useState } from "react"
-
+import React, { useState, useEffect } from "react"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, SearchBox, Hits, Highlight } from "react-instantsearch"
+import { Row, Col } from "react-bootstrap"
+import { BsSearch } from "react-icons/bs"
+import {
+  InstantSearch,
+  SearchBox,
+  Hits,
+  Highlight,
+  Snippet,
+  connectStateResults,
+  RefinementList,
+  Panel,
+} from "react-instantsearch-dom"
+import { Link } from "gatsby"
+import { useSearchBox } from "react-instantsearch"
+
+import "../styles/search.css"
 
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
-  process.env.GATSBY_ALGOLIA_SEARCH_KEY
+  process.env.GATSBY_ALGOLIA_SEARCH_KEY,
 )
 
 function Hit({ hit }) {
   return (
-    <article>
-      <p>{hit.title}</p>
-      <p>
-        <Highlight attribute="date" hit={hit} />
-      </p>
-      <p>
-        <Highlight attribute="content" hit={hit} />
-      </p>
-      <p>{hit.place}</p>
-    </article>
+    <Link to={`/blog/${hit.objectID}`}>
+      <div className="hit-link">
+        <p>
+          <Highlight attribute="title" hit={hit} />
+        </p>
+        <p>
+          <Highlight attribute="date" hit={hit} />
+        </p>
+        <p>
+          <Snippet attribute="content" hit={hit} tagName="mark" />
+        </p>
+        <p>{hit.place}</p>
+      </div>
+    </Link>
   )
 }
+
+const Results = connectStateResults(({ searchState }) => {
+  return searchState && searchState.query ? <Hits hitComponent={Hit} /> : null
+})
 
 export default () => {
   const [isModalOpen, setModalOpen] = useState(false)
 
+  useEffect(() => {
+    const handleKeyDown = event => {
+      if (event.key === "Escape") {
+        setModalOpen(false)
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [])
+
   return (
     <div>
-      <button onClick={() => setModalOpen(true)}>Search</button>
+      <BsSearch onClick={() => setModalOpen(true)} />
 
       {isModalOpen && (
         <div style={overlayStyle}>
           <div style={modalStyle}>
-            <button onClick={() => setModalOpen(false)}>Close</button>
-
             <InstantSearch searchClient={searchClient} indexName="Blogs">
-              <SearchBox autoFocus />
+              <SearchBox placeholder="Search" autoFocus />
+              <button onClick={() => setModalOpen(false)}>Close</button>
               <div style={innerModalStyle}>
-                <Hits hitComponent={Hit} />
+                <Results />
               </div>
             </InstantSearch>
           </div>
@@ -47,6 +81,30 @@ export default () => {
       )}
     </div>
   )
+}
+
+function CustomSearchBox() {
+  const { currentRefinement, isSearchStalled, refine } = useSearchBox()
+
+  return (
+    <div>
+      <input
+        type="search"
+        value={currentRefinement}
+        onChange={event => refine(event.currentTarget.value)}
+        placeholder="Search for products..."
+      />
+      {isSearchStalled && <span>Searching...</span>}
+    </div>
+  )
+}
+
+const searchBarStyle = {
+  display: "flex",
+  justifyContent: "space-between", // コンテンツの間にスペースを確保
+  alignItems: "center", // 中央に配置
+  width: "100%", // 横幅を最大に
+  marginBottom: "20px", // 下のコンテンツとの間隔
 }
 
 const overlayStyle = {
@@ -65,7 +123,6 @@ const overlayStyle = {
 const modalStyle = {
   width: "800px",
   height: "80%",
-  padding: "20px",
   boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
   zIndex: 1000,
 }
@@ -77,7 +134,6 @@ const innerModalStyle = {
   whiteSpace: "normal",
   overflowY: "auto", // スクロール可能にする
   backgroundColor: "white",
-  padding: "20px",
   boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
   zIndex: 1000,
 }

@@ -7,6 +7,8 @@ import Layout from "../components/layout"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils, faCheckSquare } from "@fortawesome/free-solid-svg-icons"
 
+import LoginButton from "../components/login/LoginButton"
+
 import SEO from "../components/seo"
 
 export default ({ data, location }) => (
@@ -22,6 +24,7 @@ export default ({ data, location }) => (
     <article className="content">
       <div className="container">
         <h1 className="bar login-title">Login</h1>
+        <LoginButton />
         <aside className="info">
           <div className="subtitle">
             <FontAwesomeIcon icon={faUtensils} />
