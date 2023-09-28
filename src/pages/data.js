@@ -38,7 +38,7 @@ export default ({ data }) => {
       acc[label] = 0
       return acc
     },
-    {}
+    {},
   )
 
   while (
@@ -56,13 +56,13 @@ export default ({ data }) => {
       (prefecture, i) =>
         (prefectures[prefecture] = prefectures[prefecture]
           ? prefectures[prefecture] + 1
-          : 1)
+          : 1),
     )
     blog.municipality?.map(
       (municipality, i) =>
         (municipalities[municipality] = municipalities[municipality]
-          ? municipalities[municipality]++
-          : 1)
+          ? municipalities[municipality] + 1
+          : 1),
     )
 
     let blogDate = new Date(blog.date)
@@ -101,7 +101,7 @@ export default ({ data }) => {
     if (blog.start_time && blog.end_time) {
       let eventMinutes = calcMinutesBetweenTimeStrings(
         blog.start_time,
-        blog.end_time
+        blog.end_time,
       )
       if (eventMinutes <= 60) {
         shootTimePeriods[60]++
@@ -176,7 +176,7 @@ export default ({ data }) => {
     datasets: [
       {
         data: Object.keys(shootTimePeriodLabels).map(
-          key => shootTimePeriods[key]
+          key => shootTimePeriods[key],
         ),
         backgroundColor: colorCodeList,
         hoverBackgroundColor: colorCodeList,
@@ -261,10 +261,11 @@ export default ({ data }) => {
             <LineChartComponent data={lineData} options={lineOptions} />
           </Row>
         </Row>
+        <br />
         <Row className="tte">
           <h3>過去に撮影会を行った時間の情報</h3>
           <Row className="tte">
-            <p>開始時間（分）</p>
+            <p>開始時間</p>
           </Row>
           <Row className="tte">
             <PieChartComponent
@@ -282,7 +283,7 @@ export default ({ data }) => {
             />
           </Row>
           <Row className="tte">
-            <p>撮影時間</p>
+            <p>撮影時間（分）</p>
           </Row>
           <Row className="tte">
             <PieChartComponent
