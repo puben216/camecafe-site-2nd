@@ -10,14 +10,15 @@ import "../styles/blog.detail.css"
 
 const Blog = ({ data, pageContext }) => {
   const blog = data.microcmsBlog
+  const site = data.site
   const category = blog.category.map(node => {
     return <li>{node}</li>
   })
   const { previous, next } = pageContext
   const formattedBlogDate = formatYmd(blog.date)
 
-  // State to hold the TOC (table of content)
   const [toc, setToc] = useState([])
+  const [viewCount, setViewCount] = useState(0)
 
   useEffect(() => {
     const parsedHtml = parse(blog.content)
@@ -29,7 +30,35 @@ const Blog = ({ data, pageContext }) => {
       }
     })
     setToc(newToc)
-  }, [blog.content])
+
+    const countApiUrl = `${site.siteMetadata.samApiUrl}/pageCount`
+    console.log(countApiUrl)
+    Promise.all([
+      fetch(`${countApiUrl}?pageId=${data.microcmsBlog.blogId}`),
+      fetch(`${countApiUrl}?pageId=${data.microcmsBlog.blogId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {},
+      }),
+    ])
+      .then(([getCountResponse, updateCountResponse]) => {
+        return Promise.all([
+          getCountResponse.json(),
+          updateCountResponse.json(),
+        ])
+      })
+      .then(([getCountData, updateCountData]) => {
+        setViewCount(getCountData.count)
+        console.log("success!!!")
+        console.log(getCountData)
+      })
+      .catch(error => {
+        setViewCount(-1)
+        console.error("APIの呼び出しに失敗:", error)
+      })
+  }, [blog.content, blog.id])
 
   return (
     <Layout>
@@ -42,7 +71,7 @@ const Blog = ({ data, pageContext }) => {
         <div>撮影日：{formattedBlogDate}</div>
         <div>時間：{blog.photo_time}</div>
         <div>天気：{blog.weather}</div>
-
+        <div>閲覧回数：{viewCount}</div>
         <br />
         <h3>目次</h3>
         <ul>
@@ -102,6 +131,11 @@ export const query = graphql`
       subtitle
       title
       updatedAt
+    }
+    site {
+      siteMetadata {
+        samApiUrl
+      }
     }
   }
 `
