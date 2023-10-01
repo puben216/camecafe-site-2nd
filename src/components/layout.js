@@ -9,7 +9,6 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 
 import { OutboundLink } from "gatsby-plugin-google-gtag"
-import { Breadcrumb } from "gatsby-plugin-breadcrumb"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 config.autoAddCss = false
