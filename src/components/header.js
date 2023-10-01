@@ -57,8 +57,8 @@ export default () => {
             <Navbar className="right-side-menu">
               <Search />
               <Nav.Link href="">
-                {false && isAuthenticated && <LogoutButton />}
-                {false && !isAuthenticated && <LoginButton />}
+                {true && isAuthenticated && <LogoutButton />}
+                {true && !isAuthenticated && <LoginButton />}
               </Nav.Link>
             </Navbar>
           </Navbar>
