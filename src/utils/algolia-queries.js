@@ -18,13 +18,28 @@ const blogQuery = `{
   }
 }`
 
+function baseFormatDate(dateString, format) {
+  const date = new Date(dateString)
+  const formatter = new Intl.DateTimeFormat("ja-JP", format)
+  return formatter.format(date)
+}
+
+function formatYmdw(dateString) {
+  return baseFormatDate(dateString, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "narrow",
+  })
+}
+
 function blogToAlgoliaRecord({ id, title, content, subtitle, date, internal }) {
   return {
     objectID: id,
     title,
     content: removeHTMLTags(content),
     subtitle,
-    date,
+    date: formatYmdw(date),
     internal,
   }
 }
