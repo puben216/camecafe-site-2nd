@@ -4,12 +4,12 @@ import "../../styles/announcement.css"
 import { formatYmd } from "../../utils/helpers"
 
 const Announcement = ({ event }) => {
+  const blogDate = new Date(event.date)
   const formattedBlogDate = formatYmd(event.date)
-  const currentDate = formatYmd(new Date())
+  const currentDate = new Date()
+  const formattedCurrentDate = formatYmd(currentDate)
   const renderFlag = () => {
-    console.log("event")
-    console.log(event)
-    if (event.recruitment_flag === true && currentDate <= formattedBlogDate) {
+    if (event.recruitment_flag === true && currentDate <= blogDate) {
       return <Badge bg="primary">募集中</Badge>
     } else {
       return <Badge bg="secondary">募集終了</Badge>
