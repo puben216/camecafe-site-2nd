@@ -6,7 +6,7 @@ import Seo from "../components/seo"
 
 const UsingSSR = ({ serverData }) => {
   return (
-    <Layout>
+    <div className="aaaaaaa">
       <Seo title="Using SSR" />
       <h1>SSR page</h1>
       <img
@@ -23,7 +23,7 @@ const UsingSSR = ({ serverData }) => {
         .
       </p>
       <Link to="/">Go back to the homepage</Link>
-    </Layout>
+    </div>
   )
 }
 

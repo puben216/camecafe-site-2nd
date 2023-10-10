@@ -9,6 +9,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 
 import { OutboundLink } from "gatsby-plugin-google-gtag"
+import BreadcrumbComponent from "../components/BreadcrumbComponent"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 config.autoAddCss = false
@@ -31,12 +32,14 @@ export const Head = () => (
   </>
 )
 
-export default ({ children }) => (
-  <div>
-    <Header />
+export const Layout = ({ children, pageContext }) => {
+  return (
+    <div>
+      <Header />
+      <BreadcrumbComponent pageContext={pageContext} />
+      {children}
 
-    {children}
-
-    <Footer />
-  </div>
-)
+      <Footer />
+    </div>
+  )
+}

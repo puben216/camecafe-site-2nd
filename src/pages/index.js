@@ -126,7 +126,7 @@ export default ({ data }) => {
 
   return (
     <div>
-      <Layout>
+      <div className="aaaaaaa">
         <Seo title="トップページ" pagetitle="カメカフェのトップページ" />
         <section className="hero">
           <figure></figure>
@@ -150,7 +150,7 @@ export default ({ data }) => {
             <div className="details">{blogs}</div>
           </div>
         </section>
-      </Layout>
+      </div>
     </div>
   )
 }

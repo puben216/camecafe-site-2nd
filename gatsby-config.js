@@ -9,7 +9,7 @@ module.exports = {
     title: `写真サークル｜カメカフェ`,
     description: `写真・カメラサークル「カメカフェ」のサイト。首都圏を中心に撮影会を行い、カメラ、写真を通じた交流の場を作ることを目標に活動しています。このサイトはその活動の経験や、過程で学んだスポットや技術等を共有しています。`,
     author: `@カメカフェ`,
-    siteUrl: `https://camecafe.net`,
+    siteUrl: process.env.APP_SITE_URL,
     samApiUrl: process.env.SAM_API_DOMAIN_URL,
   },
   plugins: [
@@ -17,10 +17,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          "G-R6Z45LK2V6", // Google Analytics / GA
-        ],
+        trackingIds: [process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID],
       },
     },
     `gatsby-plugin-image`,
@@ -87,7 +84,33 @@ module.exports = {
     {
       resolve: "@sentry/gatsby",
     },
-
+    {
+      resolve: `gatsby-plugin-breadcrumb`,
+      options: {
+        useAutoGen: true,
+        autoGenHomeLabel: `HOME`,
+        exclude: [`**/404/**`, `**/404.html`],
+        crumbLabelUpdates: [
+          {
+            pathname: "/about",
+            crumbLabel: "About",
+          },
+          {
+            pathname: "/blog/:blogId",
+            crumbLabel: "Blog Details",
+          },
+        ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://www.example.com",
+        sitemap: `${process.env.APP_SITE_URL}/sitemap-index.xml`,
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
     `gatsby-plugin-offline`,
+    `gatsby-plugin-sitemap`,
   ],
 }

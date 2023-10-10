@@ -8,11 +8,11 @@ const Blog = ({ data }) => {
   const blog = data.microcmsInfomation
 
   return (
-    <Layout>
+    <div className="aaaaaaa">
       <Seo title="Using DSG" />
       <Announcement event={blog} />
       <Link to="/">トップへ戻る</Link>
-    </Layout>
+    </div>
   )
 }
 

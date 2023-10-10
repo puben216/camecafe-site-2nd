@@ -11,7 +11,7 @@ import "../../styles/blog.css"
 
 export default ({ data, location }) => {
   return (
-    <Layout>
+    <div className="aaaaaaa">
       <Seo title="イベントブログ一覧" />
 
       <div className="container mt-8">
@@ -21,7 +21,10 @@ export default ({ data, location }) => {
             <Link to={`/blog/${node.id}`}>
               <Row className="mb-8 blog-item" key={node.id}>
                 <Col xs={5} md={4} lg={4} className="mb-8 blog-item-col-img">
-                  <img className="blog-img" src={node.samne.url} />
+                  <img
+                    className="blog-img"
+                    src={node.samne ? node.samne.url : ""}
+                  />
                 </Col>
                 <Col xs={7} md={8} lg={8}>
                   <p>
@@ -36,7 +39,7 @@ export default ({ data, location }) => {
           )
         })}
       </div>
-    </Layout>
+    </div>
   )
 }
 

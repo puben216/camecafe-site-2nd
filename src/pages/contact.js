@@ -7,7 +7,7 @@ import Seo from "../components/seo"
 import "../styles/contact.css"
 
 const Contact = () => (
-  <Layout>
+  <div className="aaaaaaa">
     <Seo title="お問い合わせ" />
 
     <div>
@@ -26,7 +26,7 @@ const Contact = () => (
         </div>
       </div>
     </div>
-  </Layout>
+  </div>
 )
 
 export default Contact

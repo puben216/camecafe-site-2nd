@@ -230,7 +230,7 @@ export default ({ data }) => {
   }
 
   return (
-    <Layout>
+    <div className="aaaaaaa">
       <Seo title="データで見る写真・カメラサークル「カメカフェ」" />
 
       <div id="data_container" className="container mt-8">
@@ -300,7 +300,7 @@ export default ({ data }) => {
           </Row>
         </Row>
       </div>
-    </Layout>
+    </div>
   )
 }
 

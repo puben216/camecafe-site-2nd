@@ -6,13 +6,13 @@ import MapContainer from "../components/place/map"
 
 export default ({ data, location }) => {
   return (
-    <Layout>
+    <div className="aaaaaaa">
       <Seo title="イベントブログ一覧" />
 
       <div id="place_container" className="container mt-8">
         <MapContainer data={data} />
       </div>
-    </Layout>
+    </div>
   )
 }
 

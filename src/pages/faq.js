@@ -9,28 +9,30 @@ import { faUtensils, faCheckSquare } from "@fortawesome/free-solid-svg-icons"
 
 import SEO from "../components/seo"
 
-export default ({ data, location }) => (
-  <Layout>
-    <SEO
-      pagetitle="カメカフェ について"
-      pagedesc="これまでにいただいた質問と回答をまとめております。"
-      pagepath={location.pathname}
-      pageimg={data.about.childImageSharp.original.src}
-      pageimgw={data.about.childImageSharp.original.width}
-      pageimgh={data.about.childImageSharp.original.height}
-    />
-    <article className="content">
-      <div className="container">
-        <h1 className="bar">カメカフェについて</h1>
-        <ul>
-          <li>サークル情報</li>
-          <li>イベント情報</li>
-          <li>撮った写真</li>
-        </ul>
-      </div>
-    </article>
-  </Layout>
-)
+const faq = ({ data, location }) => {
+  return (
+    <div className="aaaaaaa">
+      <SEO
+        pagetitle="カメカフェ について"
+        pagedesc="これまでにいただいた質問と回答をまとめております。"
+        pagepath={location.pathname}
+        pageimg={data.about.childImageSharp.original.src}
+        pageimgw={data.about.childImageSharp.original.width}
+        pageimgh={data.about.childImageSharp.original.height}
+      />
+      <article className="content">
+        <div className="container">
+          <h1 className="bar">カメカフェについて</h1>
+          <ul>
+            <li>サークル情報</li>
+            <li>イベント情報</li>
+            <li>撮った写真</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  )
+}
 
 export const query = graphql`
   query {
@@ -48,3 +50,5 @@ export const query = graphql`
     }
   }
 `
+
+export default faq

@@ -8,29 +8,28 @@ exports.createPages = async ({ graphql, actions }) => {
     defer: true,
   })
 
-  return graphql(
-    `
-      {
-        allMicrocmsBlog(sort: { fields: [date], order: ASC }) {
-          edges {
-            node {
-              id
-              blogId
-              title
-            }
-          }
-        }
-
-        allMicrocmsInfomation(sort: { fields: [date], order: ASC }) {
-          edges {
-            node {
-              id
-            }
+  return graphql(`
+    {
+      allMicrocmsBlog(sort: { fields: [date], order: ASC }) {
+        edges {
+          node {
+            id
+            blogId
+            title
           }
         }
       }
-    `
-  ).then(result => {
+
+      allMicrocmsInfomation(sort: { fields: [date], order: ASC }) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+  `).then(result => {
     if (result.errors) {
       throw result.errors
     }
@@ -46,6 +45,9 @@ exports.createPages = async ({ graphql, actions }) => {
           id: post.node.id,
           previous: previous,
           next: next,
+          breadcrumb: {
+            crumbLabel: post.node.title,
+          },
         },
       })
     })
@@ -55,6 +57,9 @@ exports.createPages = async ({ graphql, actions }) => {
         component: path.resolve("./src/templates/event-detail.js"),
         context: {
           id: edge.node.id,
+          breadcrumb: {
+            crumbLabel: edge.node.title,
+          },
         },
       })
     })

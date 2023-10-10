@@ -61,7 +61,7 @@ const Blog = ({ data, pageContext }) => {
   }, [blog.content, blog.id])
 
   return (
-    <Layout>
+    <div className="aaaaaaa">
       <Seo title="ブログ" />
       <div className="container">
         <p>更新日時：{blog.updatedAt}</p>
@@ -107,7 +107,7 @@ const Blog = ({ data, pageContext }) => {
         <br />
         <Link to="/">トップへ戻る</Link>
       </div>
-    </Layout>
+    </div>
   )
 }
 

@@ -52,3 +52,7 @@
 .blog-image-thumbnail {
   height: 60%;
 }
+
+.breadcrumb-container {
+  font-size: 10px;
+}

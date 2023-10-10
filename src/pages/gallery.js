@@ -60,7 +60,7 @@ export default ({ data, location }) => {
   }, [])
 
   return (
-    <Layout>
+    <div className="aaaaaaa">
       <Seo title="ギャラリー" />
       <ImageList
         variant="masonry"
@@ -103,7 +103,7 @@ export default ({ data, location }) => {
         }}
         maxIndex={data.photos.nodes.length}
       />
-    </Layout>
+    </div>
   )
 }
 

@@ -2,12 +2,17 @@ import React from "react"
 import { Auth0Provider } from "@auth0/auth0-react"
 import { navigate } from "gatsby"
 
-import "leaflet/dist/leaflet.css"
+import { Layout } from "./src/components/layout"
+import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
 
 const onRedirectCallback = appState => {
   // Use Gatsby's navigate method to replace the url
   //navigate(appState?.returnTo || "/", { replace: true })
   navigate("/", { replace: true })
+}
+
+export const wrapPageElement = ({ element, props }) => {
+  return <Layout {...props}>{element}</Layout>
 }
 
 export const wrapRootElement = ({ element }) => {

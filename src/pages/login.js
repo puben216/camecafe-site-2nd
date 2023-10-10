@@ -12,7 +12,7 @@ import LoginButton from "../components/login/LoginButton"
 import SEO from "../components/seo"
 
 export default ({ data, location }) => (
-  <Layout>
+  <div className="aaaaaaa">
     <SEO
       pagetitle="カメカフェ について"
       pagedesc="東京を中心に初心者向けに活動している写真・カメラサークルです。"
@@ -34,7 +34,7 @@ export default ({ data, location }) => (
         <div className="postbody"></div>
       </div>
     </article>
-  </Layout>
+  </div>
 )
 
 export const query = graphql`
