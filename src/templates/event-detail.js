@@ -9,7 +9,7 @@ const Blog = ({ data }) => {
 
   return (
     <div className="aaaaaaa">
-      <Seo title="Using DSG" />
+      <Seo title="イベント情報" />
       <Announcement event={blog} />
       <Link to="/">トップへ戻る</Link>
     </div>
