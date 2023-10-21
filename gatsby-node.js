@@ -1,11 +1,21 @@
 const path = require("path")
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
   createPage({
     path: "/using-dsg",
     component: require.resolve("./src/templates/using-dsg.js"),
     context: {},
     defer: true,
+  })
+  createRedirect({
+    fromPath: `/event/`,
+    toPath: `/`,
+    force: true,
+  })
+  createRedirect({
+    fromPath: `/blog/`,
+    toPath: `/blog/event/`,
+    force: true,
   })
 
   return graphql(`
