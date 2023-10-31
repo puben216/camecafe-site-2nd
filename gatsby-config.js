@@ -88,13 +88,9 @@ module.exports = {
       resolve: `gatsby-plugin-breadcrumb`,
       options: {
         useAutoGen: true,
-        autoGenHomeLabel: `HOME`,
-        exclude: [`**/404/**`, `**/404.html`],
+        autoGenHomeLabel: `home`,
+        exclude: [`**/404/**`, `**/404.html`, `**/dev-404-page/**`],
         crumbLabelUpdates: [
-          {
-            pathname: "/about",
-            crumbLabel: "About",
-          },
           {
             pathname: "/blog/:blogId",
             crumbLabel: "Blog Details",

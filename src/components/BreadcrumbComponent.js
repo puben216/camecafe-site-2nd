@@ -1,6 +1,8 @@
 import React from "react"
 import { Breadcrumb } from "gatsby-plugin-breadcrumb"
 
+import "../styles/breadcrumb.css"
+
 const BreadcrumbComponent = ({ pageContext }) => {
   if (!pageContext.breadcrumb) {
     return null

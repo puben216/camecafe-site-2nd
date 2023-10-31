@@ -1,0 +1,16 @@
+/* breadcrumb.css */
+.breadcrumb-container .breadcrumb a {
+  font-size: 1rem;
+  color: #0056b3;
+  text-decoration: none; /* Removes underline */
+  font-family: Arial, sans-serif; /* Font family */
+}
+
+.breadcrumb-container .breadcrumb a:hover {
+  text-decoration: underline; /* Underline on hover */
+  color: #0056b3; /* Darker color on hover */
+}
+
+.breadcrumb-container .breadcrumb a:active {
+  color: #0056b3; /* Active link color */
+}
