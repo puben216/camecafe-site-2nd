@@ -16,6 +16,22 @@ const Announcement = ({ event }) => {
     }
   }
 
+  const targetElements = event => {
+    return (
+      <>
+        <Badge bg="success">20代</Badge>
+        <Badge bg="info">30代</Badge>
+        <Badge bg="warning">40代</Badge>
+        {event.recruitmentTarget?.men !== false && (
+          <Badge bg="primary">男性</Badge>
+        )}
+        {event.recruitmentTarget?.women !== false && (
+          <Badge bg="danger">女性</Badge>
+        )}
+      </>
+    )
+  }
+
   return (
     <Container>
       <Row className="my-4">
@@ -43,12 +59,24 @@ const Announcement = ({ event }) => {
               <Card.Text className="announcement-capacity">
                 上限人数: {event.capacity}　{renderFlag()}
               </Card.Text>
+              <Card.Text>対象：{targetElements(event)}</Card.Text>
+              <Card.Text>混雑予想：{event.crowd}</Card.Text>
               <Card.Text className="announcement-text">
                 <div dangerouslySetInnerHTML={{ __html: event.content }} />
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
+      </Row>
+      <Row>
+        <center>
+          <a
+            className="btn btn-primary"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSctxGl_6d6HZ_cjSE6HSsA0fmcofHIT4rZSw4fhvmlm1yUSOw/viewform"
+          >
+            お問い合わせ
+          </a>
+        </center>
       </Row>
       <Row>
         <Col lg="9"></Col>
