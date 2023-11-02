@@ -65,6 +65,9 @@ export default ({ pageContext, data, location }) => {
               <div>
                 <p>ご連絡は以下からお願いします</p>
                 <p>ご興味もっていただけら気軽にご連絡ください！</p>
+                <p>
+                  ※ポートレートモデルも募集中です。撮られてもいいよという方も、お気軽にご連絡ください
+                </p>
                 <ul>
                   <li>
                     <a href="/contact">お問い合わせページ</a>

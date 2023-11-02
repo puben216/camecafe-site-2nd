@@ -6,7 +6,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `写真サークル｜カメカフェ`,
+    title: `写真・カメラサークル｜カメカフェ`,
     description: `写真・カメラサークル「カメカフェ」のサイト。首都圏を中心に撮影会を行い、カメラ、写真を通じた交流の場を作ることを目標に活動しています。このサイトはその活動の経験や、過程で学んだスポットや技術等を共有しています。`,
     author: `@カメカフェ`,
     siteUrl: process.env.APP_SITE_URL,
