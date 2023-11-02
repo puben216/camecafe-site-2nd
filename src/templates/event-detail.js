@@ -10,7 +10,7 @@ const Blog = ({ data }) => {
   return (
     <div className="aaaaaaa">
       <Seo title="イベント情報" />
-      <Announcement event={blog} />
+      <Announcement data={data} />
       <Link to="/">トップへ戻る</Link>
     </div>
   )
@@ -36,6 +36,11 @@ export const query = graphql`
         height
         url
         width
+      }
+    }
+    site {
+      siteMetadata {
+        samApiUrl
       }
     }
   }

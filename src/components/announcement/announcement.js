@@ -1,9 +1,12 @@
 import React from "react"
+import { useCallback } from "react"
 import { Container, Row, Col, Card, Badge } from "react-bootstrap"
 import "../../styles/announcement.css"
 import { formatYmd } from "../../utils/helpers"
 
-const Announcement = ({ event }) => {
+const Announcement = ({ data }) => {
+  const event = data.microcmsInfomation
+  const site = data.site
   const blogDate = new Date(event.date)
   const formattedBlogDate = formatYmd(event.date)
   const currentDate = new Date()
@@ -15,6 +18,22 @@ const Announcement = ({ event }) => {
       return <Badge bg="secondary">募集終了</Badge>
     }
   }
+
+  const countApiUrl = `${site.siteMetadata.samApiUrl}/pageCount`
+  const callApi = useCallback(async () => {
+    console.log("callApi1!!!")
+    try {
+      const response = await fetch(`${countApiUrl}?pageId=contactPage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {},
+      })
+    } catch (error) {
+      console.error("Error fetching API:", error)
+    }
+  }, [])
 
   const targetElements = event => {
     return (
@@ -70,12 +89,13 @@ const Announcement = ({ event }) => {
       </Row>
       <Row>
         <center>
-          <a
+          <div
             className="btn btn-primary"
             href="https://docs.google.com/forms/d/e/1FAIpQLSctxGl_6d6HZ_cjSE6HSsA0fmcofHIT4rZSw4fhvmlm1yUSOw/viewform"
+            onClick={callApi}
           >
             お問い合わせ
-          </a>
+          </div>
         </center>
       </Row>
       <Row>
