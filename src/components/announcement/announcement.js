@@ -89,13 +89,13 @@ const Announcement = ({ data }) => {
       </Row>
       <Row>
         <center>
-          <div
+          <a
             className="btn btn-primary"
             href="https://docs.google.com/forms/d/e/1FAIpQLSctxGl_6d6HZ_cjSE6HSsA0fmcofHIT4rZSw4fhvmlm1yUSOw/viewform"
             onClick={callApi}
           >
             お問い合わせ
-          </div>
+          </a>
         </center>
       </Row>
       <Row>
