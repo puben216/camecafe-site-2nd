@@ -1,13 +1,12 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Layout from "../components/layout"
 import Seo from "../components/seo"
 import MapContainer from "../components/place/map"
 
 export default ({ data, location }) => {
   return (
     <div className="aaaaaaa">
-      <Seo title="イベントブログ一覧" />
+      <Seo title="開催場所" />
 
       <div id="place_container" className="container mt-8">
         <MapContainer data={data} />
@@ -36,13 +35,15 @@ export const query = graphql`
         }
       }
     }
-    allMicrocmsInfomation(filter: { recruitment_flag: { eq: true } }) {
+    allMicrocmsInfomation {
       nodes {
         title
         place
         id
         longitude
         latitude
+        date
+        recruitment_flag
       }
     }
   }

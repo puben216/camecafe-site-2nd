@@ -10,7 +10,6 @@ const Announcement = ({ data }) => {
   const blogDate = new Date(event.date)
   const formattedBlogDate = formatYmd(event.date)
   const currentDate = new Date()
-  const formattedCurrentDate = formatYmd(currentDate)
   const renderFlag = () => {
     if (event.recruitment_flag === true && currentDate <= blogDate) {
       return <Badge bg="primary">募集中</Badge>

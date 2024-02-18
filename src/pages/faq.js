@@ -1,25 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 
-import Layout from "../components/layout"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUtensils, faCheckSquare } from "@fortawesome/free-solid-svg-icons"
-
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const faq = ({ data, location }) => {
   return (
     <div className="aaaaaaa">
-      <SEO
-        pagetitle="カメカフェ について"
-        pagedesc="これまでにいただいた質問と回答をまとめております。"
-        pagepath={location.pathname}
-        pageimg={data.about.childImageSharp.original.src}
-        pageimgw={data.about.childImageSharp.original.width}
-        pageimgh={data.about.childImageSharp.original.height}
-      />
+      <Seo title="FAQ" />
       <article className="content">
         <div className="container">
           <h1 className="bar">カメカフェについて</h1>
