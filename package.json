@@ -26,7 +26,7 @@
     "gatsby-plugin-breadcrumb": "^12.3.2",
     "gatsby-plugin-gatsby-cloud": "^5.12.0",
     "gatsby-plugin-google-analytics": "^5.12.0",
-    "gatsby-plugin-google-gtag": "^5.12.0",
+    "gatsby-plugin-google-gtag": "^5.14.0",
     "gatsby-plugin-image": "^3.12.0",
     "gatsby-plugin-manifest": "^5.12.0",
     "gatsby-plugin-offline": "^6.12.0",
@@ -34,6 +34,7 @@
     "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sharp": "^5.12.0",
     "gatsby-plugin-sitemap": "^6.12.1",
+    "gatsby-sharp": "^1.14.0",
     "gatsby-source-airtable": "^2.4.1",
     "gatsby-source-filesystem": "^5.12.0",
     "gatsby-source-microcms": "^3.0.0",
@@ -52,7 +53,8 @@
     "react-instantsearch-core": "^7.0.2",
     "react-instantsearch-dom": "^6.40.4",
     "react-leaflet": "^4.2.1",
-    "react-stack-grid": "^0.7.1"
+    "react-stack-grid": "^0.7.1",
+    "semver": "^7.7.2"
   },
   "devDependencies": {
     "gatsby-plugin-netlify": "^5.1.0",
