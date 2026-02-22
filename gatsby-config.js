@@ -17,7 +17,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID],
+        trackingIds: [process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID].filter(Boolean),
       },
     },
     `gatsby-plugin-image`,
@@ -35,7 +35,7 @@ module.exports = {
       options: {
         name: `camecafe（カメカフェ）`,
         short_name: `camecafe`,
-        short_url: `/`,
+        start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `standalone`,
         icon: `src/images/cametop.png`,
@@ -57,12 +57,6 @@ module.exports = {
             endpoint: "infomation",
           },
         ],
-      },
-    },
-    {
-      resolve: "gatsby-plugin-react-leaflet",
-      options: {
-        linkStyles: true, // (default: true) Enable/disable loading stylesheets via CDN
       },
     },
     {

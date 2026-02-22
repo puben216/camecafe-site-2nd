@@ -1,4 +1,20 @@
 const path = require("path")
+
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === "build-html" || stage === "develop-html") {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /free-solid-svg-icons/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    })
+  }
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
   createRedirect({
