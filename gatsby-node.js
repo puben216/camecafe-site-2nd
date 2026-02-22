@@ -9,6 +9,10 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             test: /free-solid-svg-icons/,
             use: loaders.null(),
           },
+          {
+            test: /leaflet/,
+            use: loaders.null(),
+          },
         ],
       },
     })
