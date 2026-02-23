@@ -17,7 +17,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID].filter(Boolean),
+        trackingIds: [process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID].filter(
+          Boolean,
+        ),
       },
     },
     `gatsby-plugin-image`,
@@ -63,7 +65,7 @@ module.exports = {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
         queries: require("./src/utils/algolia-queries"),
       },
     },
